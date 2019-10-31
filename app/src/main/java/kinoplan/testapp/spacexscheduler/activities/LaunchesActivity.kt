@@ -1,7 +1,7 @@
-package kinoplan.testapp.spacexscheduler
+package kinoplan.testapp.spacexscheduler.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kinoplan.testapp.spacexscheduler.R
 
 class LaunchesActivity : BaseActivity() {
 

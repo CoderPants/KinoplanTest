@@ -1,4 +1,4 @@
-package kinoplan.testapp.spacexscheduler
+package kinoplan.testapp.spacexscheduler.activities
 
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity

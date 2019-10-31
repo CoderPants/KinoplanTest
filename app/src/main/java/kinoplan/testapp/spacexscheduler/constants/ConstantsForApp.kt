@@ -1,4 +1,5 @@
 package kinoplan.testapp.spacexscheduler.constants
 
-class ConstantsForApp {
+object ConstantsForApp {
+    val BASE_URL_RETROFIT : String = "https://api.spacexdata.com/"
 }

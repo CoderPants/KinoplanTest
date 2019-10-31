@@ -1,9 +1,10 @@
-package kinoplan.testapp.spacexscheduler
+package kinoplan.testapp.spacexscheduler.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import kinoplan.testapp.spacexscheduler.R
+import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
 
 class MainActivity : BaseActivity() {
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="greetings_activity_btn_padding">15dp</dimen>
+    <dimen name="greetings_activity_btn_margin_top">40dp</dimen>
+    <dimen name="greetings_activity_btn_stroke_width">2dp</dimen>
+    <dimen name="greetings_activity_btn_corners_radius">10dp</dimen>
+</resources>

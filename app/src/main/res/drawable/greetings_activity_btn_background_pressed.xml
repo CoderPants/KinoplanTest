@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <stroke android:width="@dimen/greetings_activity_btn_stroke_width"
+        android:color = "@color/main_dark_white"/>
+
+    <corners android:radius="@dimen/greetings_activity_btn_corners_radius"/>
+
+    <solid android:color="@color/colorPrimary" />
+
+</shape>

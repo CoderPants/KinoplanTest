@@ -8,5 +8,5 @@ import retrofit2.http.Query
 interface GetDataService {
 
     @GET("/v3/launches")
-    fun getAllLaunches(@Query("sort") sortCase : String) : Call<JsonArray>
+    fun getAllLaunches(@Query("sort") sortCase : String, @Query("order") orderCase : String) : Call<JsonArray>
 }

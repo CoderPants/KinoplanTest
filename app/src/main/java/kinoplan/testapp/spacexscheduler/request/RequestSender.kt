@@ -9,22 +9,25 @@ import retrofit2.Response
 
 class RequestSender (private val callBack: RequestCallBack) {
 
-    fun sendGetLaunchesRequest(sortCase : String){
+    fun sendGetLaunchesRequest(sortCase : String, orderCase : String){
 
         val service = RetrofitInstance.instance.create(GetDataService::class.java)
 
-        val getLaunchesCall = service.getAllLaunches(sortCase)
+        val getLaunchesCall = service.getAllLaunches(sortCase, orderCase)
 
         getLaunchesCall.enqueue(object : Callback<JsonArray> {
+
             override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
                 val serverResponse : JsonArray = response.body() ?: JsonArray()
-                Log.i(ConstantsForApp.LOG_TAG, "Server response: $serverResponse")
 
                 callBack.onGetLaunchesResponse(serverResponse)
             }
 
             override fun onFailure(call: Call<JsonArray>, t: Throwable) {
-                Log.e(ConstantsForApp.LOG_TAG, "Error by getting data from server. Cal itself ${call.request().body()}. Error itself: ", t)
+                Log.e(ConstantsForApp.LOG_TAG,
+                    "Error by getting data from server. " +
+                            "Call itself ${call.request().body()}. " +
+                            "Error itself: ", t)
             }
 
         })

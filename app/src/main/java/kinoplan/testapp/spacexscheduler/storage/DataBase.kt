@@ -7,7 +7,7 @@ import kinoplan.testapp.spacexscheduler.converters.LaunchConverter
 import kinoplan.testapp.spacexscheduler.dao.LaunchDao
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 
-@Database(entities = [Launch::class], version = 2)
+@Database(entities = [Launch::class], version = 1)
 
 @TypeConverters(LaunchConverter::class)
 abstract class DataBase : RoomDatabase() {

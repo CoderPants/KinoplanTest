@@ -18,9 +18,11 @@ class Repository private constructor(application: Application) {
     private val requestSender : RequestSender = RequestSender(object : RequestSender.RequestCallBack
     {
         override fun onGetLaunchesResponse(receivedLaunches: JsonArray) {
+
             CoroutineScope(Dispatchers.IO).launch {
                 val launches : List<Launch> = parser.parseFromJsonArray(jsonArray = receivedLaunches)
                 Log.i(ConstantsForApp.LOG_TAG, "Launches itself SIZE ${launches.size} RESPONSE SIZE ${receivedLaunches.size()}")
+                insertLaunches(launches)
             }
         }
     })

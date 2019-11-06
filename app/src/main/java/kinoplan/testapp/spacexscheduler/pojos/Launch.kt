@@ -6,7 +6,6 @@ import com.google.gson.JsonObject
 
 @Entity(tableName = "launch_description")
 data class Launch (
-    @PrimaryKey
     val flight_number : Int,
     val mission_name : String,
     val links : JsonObject,
@@ -14,9 +13,20 @@ data class Launch (
     val launch_success :  Boolean?,
     val details : String?,
     val image : String?,
-    val smallImage : String?)
+    val smallImage : String? )
 {
-    //Auto generated
+    @PrimaryKey(autoGenerate = true)
+    var key : Int = 0
+
+    //Format of date
+    // year-month-dayThours:min:sec.000Z
+    fun getDate() : String{
+        val dateAndTimePair : List<String> = launch_date_utc.split("T")
+        val time = dateAndTimePair[1]
+        return dateAndTimePair[0] +
+                "\n ${time.substring(0, time.lastIndexOf('.'))}"
+    }
+
     override fun toString(): String {
         return "Launch(flight_number=$flight_number," +
                 " mission_name='$mission_name', " +

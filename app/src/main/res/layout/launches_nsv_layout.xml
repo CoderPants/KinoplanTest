@@ -7,13 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".activities.LaunchesActivity"
     tools:showIn="@layout/activity_launches"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:layout_marginTop="5dp">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/launches_activity_rv_launches"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <ProgressBar
+            android:id="@+id/launches_activity_loading_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/launches_activity_progressbar_margin_top"
+            android:indeterminateTint="@color/main_white"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/launches_activity_rv_launches"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -1,30 +1,24 @@
 package kinoplan.testapp.spacexscheduler.parsers
 
-import android.util.Log
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class LaunchParser {
 
-    suspend fun parseFromJsonArray(jsonArray: JsonArray) : List<Launch>{
+    fun parseFromJsonArray(jsonArray: JsonArray) : List<Launch>{
 
         val result = ArrayList<Launch>()
 
-        withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
+        CoroutineScope(Dispatchers.IO).launch {
+            for (element in jsonArray)
+                result.add(getLaunch(element.asJsonObject))
 
-            for (element in jsonArray) {
-                try {
-                    result.add( getLaunch(element.asJsonObject) )
-                } catch (e: Exception) {
-                    Log.e(ConstantsForApp.LOG_TAG, "Exception", e)
-                }
-            }
         }
         return result
     }

@@ -18,25 +18,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/main_black"
-        android:padding="@dimen/activity_launches_rv_element_padding">
+        android:padding="@dimen/activity_launches_rv_element_padding"
+        android:layout_marginBottom="10dp">
 
         <ImageView
             android:id="@+id/activity_launches_rv_element_image"
             android:layout_width="@dimen/launches_activity_rv_elem_image_width"
             android:layout_height="@dimen/launches_activity_rv_elem_image_height"
             android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:url="@{launch.image}"
-            app:errorImage="@{@drawable/ic_application}"
-            />
+            app:url="@{launch.smallImage}"
+            app:errorImage="@{@drawable/ic_application}" />
 
         <TextView
             android:id="@+id/activity_launches_rv_element_text_mission_name"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
+            android:layout_marginEnd="10dp"
+            android:maxLines="3"
             android:text="@{launch.mission_name}"
+            android:textAlignment="center"
             android:textColor="@color/main_dark_white"
             android:textSize="@dimen/launches_activity_rv_elem_tv_mission_name_text_size"
             android:textStyle="bold"
@@ -49,22 +53,36 @@
             android:id="@+id/activity_launches_rv_element_text_mission_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:fontFamily="monospace"
-            android:text="@{launch.launch_date_utc}"
+            android:text="@{launch.getDate()}"
             android:textColor="@color/main_gray"
             android:textSize="@dimen/launches_activity_rv_elem_tv_mission_date_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_launches_rv_element_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/activity_launches_rv_element_image"
             app:layout_constraintTop_toBottomOf="@+id/activity_launches_rv_element_text_mission_name" />
+
+        <ImageView
+            android:id="@+id/activity_launches_rv_element_iv_success"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            android:src="@{launch.launch_success == null? @drawable/launch_null : (launch.launch_success? @drawable/launch_success : @drawable/launch_failed)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/activity_launches_rv_element_text_mission_name"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/main_element_bottom_border"
             android:layout_width="match_parent"
             android:layout_height="@dimen/activity_launches_rv_bottom_border_height"
             android:layout_gravity="bottom"
-            android:layout_marginTop="@dimen/activity_launches_rv_bottom_border_margin_top"
+            android:layout_marginTop="@dimen/launches_activity_rv_elem_bottom_border_margin_top"
             android:background="@color/main_dark_white"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activity_launches_rv_element_image" />

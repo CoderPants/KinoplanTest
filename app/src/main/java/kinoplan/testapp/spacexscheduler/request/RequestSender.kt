@@ -20,6 +20,7 @@ class RequestSender (private val callBack: RequestCallBack) {
             override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
                 val serverResponse : JsonArray = response.body() ?: JsonArray()
 
+                Log.i(ConstantsForApp.LOG_TAG, "Launches $serverResponse")
                 callBack.onGetLaunchesResponse(serverResponse)
             }
 

@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:background="@color/main_black"
         android:padding="@dimen/activity_launches_rv_element_padding"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="@dimen/activity_launches_rv_element_margin_bottom">
 
         <ImageView
             android:id="@+id/activity_launches_rv_element_image"
@@ -34,10 +34,10 @@
 
         <TextView
             android:id="@+id/activity_launches_rv_element_text_mission_name"
-            android:layout_width="120dp"
+            android:layout_width="@dimen/activity_launches_rv_element_text_mission_name_width"
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="@dimen/activity_launches_rv_element_text_mission_name_margin_end"
             android:maxLines="3"
             android:text="@{launch.mission_name}"
             android:textAlignment="center"
@@ -53,8 +53,8 @@
             android:id="@+id/activity_launches_rv_element_text_mission_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="@dimen/activity_launches_rv_element_text_mission_date_margin_top"
+            android:layout_marginEnd="@dimen/activity_launches_rv_element_text_mission_date_margin_end"
             android:fontFamily="monospace"
             android:text="@{launch.getDate()}"
             android:textColor="@color/main_gray"
@@ -66,8 +66,8 @@
 
         <ImageView
             android:id="@+id/activity_launches_rv_element_iv_success"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/activity_launches_rv_element_iv_success_width"
+            android:layout_height="@dimen/activity_launches_rv_element_iv_success_width"
             android:scaleType="fitXY"
             android:src="@{launch.launch_success == null? @drawable/launch_null : (launch.launch_success? @drawable/launch_success : @drawable/launch_failed)}"
             app:layout_constraintBottom_toBottomOf="parent"

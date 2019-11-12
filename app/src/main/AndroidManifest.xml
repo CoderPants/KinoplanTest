@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.LaunchDetailsActivity"></activity>
         <activity android:name=".activities.LaunchesActivity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>

@@ -4,4 +4,5 @@
     <string name="error_name_of_mission">Unknown name of mission</string>
     <string name="error_date_of_mission">Unknown mission date</string>
     <string name="rocket_title_activity_launch_details">Rocket</string>
+    <string name="rocket_container_rocket_name">Rocket name</string>
 </resources>

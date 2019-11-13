@@ -18,88 +18,132 @@
         android:scrollbars="none"
         android:background="@color/main_black">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/activity_launches_rv_element_base_layout"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/main_black"
-            android:padding="@dimen/activity_launches_rv_element_padding"
-            android:layout_marginBottom="@dimen/activity_launches_rv_element_margin_bottom">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/activity_launches_rv_element_image"
-                android:layout_width="@dimen/launches_activity_rv_elem_image_width"
-                android:layout_height="@dimen/launches_activity_rv_elem_image_height"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:url="@{launch.smallImage}"
-                app:errorImage="@{@drawable/ic_application}" />
-
-            <TextView
-                android:id="@+id/activity_launches_rv_element_text_mission_name"
-                android:layout_width="@dimen/activity_launches_rv_element_text_mission_name_width"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:layout_marginEnd="@dimen/activity_launches_rv_element_text_mission_name_margin_end"
-                android:maxLines="3"
-                android:text="@{launch.mission_name}"
-                android:textAlignment="center"
-                android:textColor="@color/main_dark_white"
-                android:textSize="@dimen/launches_activity_rv_elem_tv_mission_name_text_size"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/activity_launches_rv_element_image"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/activity_launches_rv_element_text_mission_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_launches_rv_element_text_mission_date_margin_top"
-                android:layout_marginEnd="@dimen/activity_launches_rv_element_text_mission_date_margin_end"
-                android:fontFamily="monospace"
-                android:text="@{launch.getDate()}"
-                android:textColor="@color/main_gray"
-                android:textSize="@dimen/launches_activity_rv_elem_tv_mission_date_text_size"
-                app:layout_constraintBottom_toBottomOf="@+id/activity_launches_rv_element_image"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/activity_launches_rv_element_image"
-                app:layout_constraintTop_toBottomOf="@+id/activity_launches_rv_element_text_mission_name" />
-
-            <ImageView
-                android:id="@+id/activity_launches_rv_element_iv_success"
-                android:layout_width="@dimen/activity_launches_rv_element_iv_success_width"
-                android:layout_height="@dimen/activity_launches_rv_element_iv_success_width"
-                android:scaleType="fitXY"
-                android:src="@{launch.launch_success == null? @drawable/launch_null : (launch.launch_success? @drawable/launch_success : @drawable/launch_failed)}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/activity_launches_rv_element_text_mission_name"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/main_element_bottom_border"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/activity_launch_details_top_container"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_launches_rv_bottom_border_height"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="@dimen/launches_activity_rv_elem_bottom_border_margin_top"
-                android:background="@color/main_dark_white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_launches_rv_element_image" />
+                android:layout_height="wrap_content"
+                android:background="@color/main_black"
+                android:padding="@dimen/activity_launches_rv_element_padding"
+                android:layout_marginBottom="@dimen/activity_launches_rv_element_margin_bottom">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/activity_launch_details_top_container_image"
+                    android:layout_width="@dimen/launches_activity_rv_elem_image_width"
+                    android:layout_height="@dimen/launches_activity_rv_elem_image_height"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:url="@{launch.smallImage}"
+                    app:errorImage="@{@drawable/ic_application}" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="textStart"
-            android:textColor="@color/main_white"
-            android:text="@string/rocket_title_activity_launch_details"/>
+                <TextView
+                    android:id="@+id/activity_launch_details_top_container_text_mission_name"
+                    android:layout_width="@dimen/activity_launches_rv_element_text_mission_name_width"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:layout_marginEnd="@dimen/activity_launches_rv_element_text_mission_name_margin_end"
+                    android:maxLines="3"
+                    android:text="@{launch.mission_name}"
+                    android:textAlignment="center"
+                    android:textColor="@color/main_dark_white"
+                    android:textSize="@dimen/launches_activity_rv_elem_tv_mission_name_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/activity_launch_details_top_container_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/activity_launch_details_top_container_text_mission_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_launches_rv_element_text_mission_date_margin_top"
+                    android:layout_marginEnd="@dimen/activity_launches_rv_element_text_mission_date_margin_end"
+                    android:fontFamily="monospace"
+                    android:text="@{launch.getDate()}"
+                    android:textColor="@color/main_gray"
+                    android:textSize="@dimen/launches_activity_rv_elem_tv_mission_date_text_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/activity_launch_details_top_container_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/activity_launch_details_top_container_image"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_top_container_text_mission_name" />
+
+                <ImageView
+                    android:id="@+id/activity_launch_details_top_container_iv_success"
+                    android:layout_width="@dimen/activity_launches_rv_element_iv_success_width"
+                    android:layout_height="@dimen/activity_launches_rv_element_iv_success_width"
+                    android:scaleType="fitXY"
+                    android:src="@{launch.launch_success == null? @drawable/launch_null : (launch.launch_success? @drawable/launch_success : @drawable/launch_failed)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/activity_launch_details_top_container_text_mission_name"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/activity_launch_details_top_container_border"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_launches_rv_bottom_border_height"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="@dimen/launches_activity_rv_elem_bottom_border_margin_top"
+                    android:background="@color/main_dark_white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_top_container_image" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/activity_launch_details_rocket_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/activity_launch_details_top_container"
+                android:background="@drawable/expanded_container_background">
+
+                <TextView
+                    android:id="@+id/activity_launch_details_rocket_container_top_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rocket_title_activity_launch_details"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/main_white"
+                    android:layout_marginStart="@dimen/activity_launch_details_rocket_container_text_margin_start"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/activity_launch_details_rocket_container_top_image"
+                    android:layout_width="@dimen/activity_launch_details_collapsing_image_width"
+                    android:layout_height="@dimen/activity_launch_details_collapsing_image_height"
+                    android:src="@drawable/ic_expand_more_white_30dp"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/activity_launch_details_rocket_container_top_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/activity_launch_details_rocket_container_top_text" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/activity_launch_details__container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rocket_container_rocket_name"
+                        android:textColor="@color/main_white"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
 
     </ScrollView>
 

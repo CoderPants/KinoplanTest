@@ -4,5 +4,12 @@
     <string name="error_name_of_mission">Unknown name of mission</string>
     <string name="error_date_of_mission">Unknown mission date</string>
     <string name="rocket_title_activity_launch_details">Rocket</string>
-    <string name="rocket_container_rocket_name">Rocket name</string>
+    <string name="rocket_name">Rocket name</string>
+    <string name="rocket_type">Rocket type</string>
+    <string name="first_stage">First stage</string>
+    <string name="core_serial">Core serial</string>
+    <string name="grid_fins">Grid fins</string>
+    <string name="legs">Legs</string>
+    <string name="landing_place">Landing place</string>
+    <string name="second_stage">Second stage</string>
 </resources>

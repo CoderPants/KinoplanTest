@@ -8,6 +8,8 @@
     <dimen name="activity_launch_details_collapsing_rocket_container_margin_top">10dp</dimen>
     <dimen name="activity_launch_details_collapsing_first_stage_container_margin_start_end">20dp
     </dimen>
-    <dimen name="activity_launch_details_collapsing_container_tv_margin_start_end">5dp
+    <dimen name="activity_launch_details_collapsing_container_tv_margin_start_end">10dp
     </dimen>
+    <dimen name="activity_launch_details_top_containers_padding">5dp</dimen>
+    <dimen name="activity_launch_details_ending_margin_bottom">50dp</dimen>
 </resources>

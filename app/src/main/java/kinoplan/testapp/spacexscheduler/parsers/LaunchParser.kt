@@ -109,12 +109,30 @@ class LaunchParser {
         val article : JsonElement = links.get("article_link")
         val video : JsonElement = links.get("video_link")
 
+        val imagesJson : JsonArray = links.getAsJsonArray("flickr_images")
+
+        /*val images : ArrayList<String>? = if(imagesJson.size() == 0) null else ArrayList()
+
+        if(images != null) {
+            for(image in imagesJson)
+                images.add(image.asString)
+        }*/
+
+        var images : ArrayList<String>? = null
+
+        if(imagesJson.size() != 0) {
+            images = ArrayList()
+
+            for(image in imagesJson)
+                images.add(image.asString)
+        }
+
         return Links(
             wikipedia = getDataFromJsonElemAsString(wiki),
             reddit = getDataFromJsonElemAsString(reddit),
             article = getDataFromJsonElemAsString(article),
-            video = getDataFromJsonElemAsString(video)
-        )
+            video = getDataFromJsonElemAsString(video),
+            images = images)
     }
 
     private fun getDataFromJsonElemAsString(jsonElement: JsonElement) : String? = if(jsonElement.isJsonNull) null else jsonElement.asString

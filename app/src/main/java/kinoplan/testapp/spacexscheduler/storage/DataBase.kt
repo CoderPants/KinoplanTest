@@ -3,17 +3,15 @@ package kinoplan.testapp.spacexscheduler.storage
 import android.content.Context
 import androidx.room.*
 import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
-import kinoplan.testapp.spacexscheduler.converters.FirstStageConverter
-import kinoplan.testapp.spacexscheduler.converters.LinksConverter
-import kinoplan.testapp.spacexscheduler.converters.RocketConverter
-import kinoplan.testapp.spacexscheduler.converters.SecondStageConverter
+import kinoplan.testapp.spacexscheduler.converters.*
 import kinoplan.testapp.spacexscheduler.dao.LaunchDao
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 import kinoplan.testapp.spacexscheduler.pojos.SecondStage
 
-@Database(entities = [Launch::class], version = 2)
+@Database(entities = [Launch::class], version = 1)
 
-@TypeConverters(RocketConverter::class, LinksConverter::class, FirstStageConverter::class, SecondStageConverter::class)
+@TypeConverters(RocketConverter::class, LinksConverter::class,
+    FirstStageConverter::class, SecondStageConverter::class, ArrayConverter::class)
 abstract class DataBase : RoomDatabase() {
 
     abstract fun launchDao() : LaunchDao

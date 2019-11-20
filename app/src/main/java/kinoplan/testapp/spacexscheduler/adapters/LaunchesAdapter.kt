@@ -1,8 +1,13 @@
 package kinoplan.testapp.spacexscheduler.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kinoplan.testapp.spacexscheduler.activities.LaunchDetailsActivity
+import kinoplan.testapp.spacexscheduler.constants.IntentKeys
 import kinoplan.testapp.spacexscheduler.databinding.LaunchesRvElementBinding
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 
@@ -29,6 +34,15 @@ class LaunchesAdapter : RecyclerView.Adapter<LaunchesAdapter.LaunchesViewHolder>
         fun bind(launch : Launch){
             binding.launch = launch
             binding.executePendingBindings()
+
+            val constraintLayout = binding.activityLaunchesRvElementBaseLayout
+
+            constraintLayout.setOnClickListener {
+                val context : Context = it.context
+                val intent = Intent(context, LaunchDetailsActivity::class.java)
+                intent.putExtra(IntentKeys.FLIGHT_ID, launch.flight_number)
+                context.startActivity(intent)
+            }
         }
     }
 }

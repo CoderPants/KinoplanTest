@@ -17,5 +17,5 @@
     <dimen name="activity_launches_rv_element_text_mission_date_margin_top">10dp</dimen>
     <dimen name="activity_launches_rv_element_text_mission_date_margin_end">10dp</dimen>
     <dimen name="activity_launches_rv_element_iv_success_width">30dp</dimen>
-    <dimen name="activity_launches_rv_element_iv_success_width">30dp</dimen>
+    <dimen name="activity_launches_rv_element_iv_success_height">30dp</dimen>
 </resources>

@@ -2,6 +2,7 @@ package kinoplan.testapp.spacexscheduler.binding
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import android.widget.TextView
 
 import androidx.databinding.BindingAdapter
 
@@ -15,14 +16,21 @@ object BindingAdapters {
 
     @BindingAdapter("app:url", "app:errorImage")
     @JvmStatic
-    fun loadImage(view: ImageView, url: String?, errorImage: Drawable)
-        {
-            Picasso.get().setIndicatorsEnabled(true)
+    fun loadImage(view: ImageView, url: String?, errorImage: Drawable) {
+        if(url != null)
+            Picasso.get().load(url).error(errorImage).into(view)
+        else
+            Picasso.get().load(R.drawable.ic_application).into(view)
+    }
 
-            if(url != null)
-                Picasso.get().load(url).error(errorImage).into(view)
-            else
-                Picasso.get().load(R.drawable.ic_application).into(view)
-        }
+    @BindingAdapter("app:textTV", "app:errorText")
+    @JvmStatic
+    fun setText(view : TextView, text : String?, errorText: String){
+        if(text == null)
+            view.text = errorText
+        else
+            view.text = text
+
+    }
 
 }

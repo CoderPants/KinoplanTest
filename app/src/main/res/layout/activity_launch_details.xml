@@ -10,6 +10,11 @@
     <variable
         name="launch"
         type="kinoplan.testapp.spacexscheduler.pojos.Launch" />
+
+    <variable
+        name="links"
+        type="kinoplan.testapp.spacexscheduler.pojos.Links" />
+
     </data>
 
     <ScrollView
@@ -80,7 +85,7 @@
                 <ImageView
                     android:id="@+id/activity_launch_details_top_container_iv_success"
                     android:layout_width="@dimen/activity_launches_rv_element_iv_success_width"
-                    android:layout_height="@dimen/activity_launches_rv_element_iv_success_width"
+                    android:layout_height="@dimen/activity_launches_rv_element_iv_success_height"
                     android:scaleType="fitXY"
                     android:src="@{launch.launch_success == null? @drawable/launch_null : (launch.launch_success? @drawable/launch_success : @drawable/launch_failed)}"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -216,7 +221,7 @@
                 android:id="@+id/activity_launch_details_link_for_wiki"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/wikipedia"
+                android:text="@{links.wikipedia}"
                 android:textColor="@color/main_white"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 android:layout_marginEnd="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
@@ -241,7 +246,7 @@
                 android:id="@+id/activity_launch_details_link_for_reddit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/reddit"
+                android:text="@{links.reddit}"
                 android:textColor="@color/main_white"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 android:layout_marginEnd="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
@@ -265,7 +270,7 @@
                 android:id="@+id/activity_launch_details_link_for_article"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mission_article"
+                android:text="@{links.article}"
                 android:textColor="@color/main_white"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 android:layout_marginEnd="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
@@ -290,7 +295,7 @@
                 android:id="@+id/activity_launch_details_link_for_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mission_video"
+                android:text="@{links.video}"
                 android:textColor="@color/main_white"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 android:layout_marginEnd="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"

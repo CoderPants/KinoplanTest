@@ -1,363 +1,398 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout>
 
-    android:id="@+id/activity_launch_details_collapsing_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    <data>
 
-    <!--Rocket data-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_launch_details_rocket_details_container"
+        <import type="android.view.View"/>
+
+        <variable
+            name="firstStage"
+            type="kinoplan.testapp.spacexscheduler.pojos.FirstStage" />
+
+        <variable
+            name="secondStage"
+            type="kinoplan.testapp.spacexscheduler.pojos.SecondStage" />
+
+        <variable
+            name="rocket"
+            type="kinoplan.testapp.spacexscheduler.pojos.Rocket" />
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        android:id="@+id/activity_launch_details_collapsing_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-        android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-        android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+        android:layout_height="match_parent"
         >
 
-        <TextView
-            android:id="@+id/activity_launch_details_tv_rocket_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rocket_name"
-            android:textColor="@color/main_white"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/activity_launch_details_tv_for_rocket_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/main_white"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/activity_launch_details_tv_rocket_type"
-            android:layout_width="wrap_content"
+        <!--Rocket data-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_launch_details_rocket_details_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:text="@string/rocket_type"
-            android:textColor="@color/main_white"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_tv_rocket_name"
-            />
-
-        <TextView
-            android:id="@+id/activity_launch_details_tv_for_rocket_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:textColor="@color/main_white"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_tv_for_rocket_name"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <!--Collapsing layout for first stage data-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_launch_details_first_stage_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-        android:layout_below="@+id/activity_launch_details_rocket_details_container"
-        android:paddingStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-        android:paddingEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-        android:background="@drawable/expanded_container_background">
-
-        <TextView
-            android:id="@+id/activity_launch_details_first_stage_container_top_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/first_stage"
-            android:textAlignment="textStart"
-            android:textColor="@color/main_white"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/activity_launch_details_first_stage_container_top_image"
-            android:layout_width="@dimen/activity_launch_details_collapsing_image_width"
-            android:layout_height="@dimen/activity_launch_details_collapsing_image_height"
-            android:src="@drawable/ic_expand_more_white_30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/activity_launch_details_first_stage_container_top_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/activity_launch_details_first_stage_container_top_text" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--First stage data-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_launch_details_first_stage_details_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-        android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-        android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-        android:layout_below="@+id/activity_launch_details_first_stage_container">
-
-        <TextView
-            android:id="@+id/activity_launch_details_first_stage_details_container_tv_core_serial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/core_serial"
-            android:textColor="@color/main_white"
             android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/activity_launch_details_first_stage_details_container_tv_for_core_serial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/main_white"
             android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toRightOf="parent"
-            />
+            >
 
-        <TextView
-            android:id="@+id/activity_launch_details_first_stage_details_container_tv_grid_fins"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/activity_launch_details_tv_rocket_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rocket_name"
+                android:textColor="@color/main_white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/activity_launch_details_tv_for_rocket_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{rocket.name}"
+                android:textColor="@color/main_white"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/activity_launch_details_tv_rocket_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:text="@string/rocket_type"
+                android:textColor="@color/main_white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_tv_rocket_name"
+                />
+
+            <TextView
+                android:id="@+id/activity_launch_details_tv_for_rocket_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:textColor="@color/main_white"
+                android:text="@{rocket.type}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_tv_for_rocket_name"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!--Collapsing layout for first stage data-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_launch_details_first_stage_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:text="@string/grid_fins"
-            android:textColor="@color/main_white"
+            android:layout_below="@+id/activity_launch_details_rocket_details_container"
+            android:paddingStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+            android:paddingEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+            android:background="@drawable/expanded_container_background">
+
+            <TextView
+                android:id="@+id/activity_launch_details_first_stage_container_top_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/first_stage"
+                android:textAlignment="textStart"
+                android:textColor="@color/main_white"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/activity_launch_details_first_stage_container_top_image"
+                android:layout_width="@dimen/activity_launch_details_collapsing_image_width"
+                android:layout_height="@dimen/activity_launch_details_collapsing_image_height"
+                android:src="@drawable/ic_expand_more_white_30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_launch_details_first_stage_container_top_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/activity_launch_details_first_stage_container_top_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--First stage data-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_launch_details_first_stage_details_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
             android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_core_serial"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/activity_launch_details_first_stage_details_container_tv_for_grid_fins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:textColor="@color/main_white"
             android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_for_core_serial"
-            app:layout_constraintLeft_toRightOf="parent"
-            />
+            android:layout_below="@+id/activity_launch_details_first_stage_container">
 
-        <TextView
-            android:id="@+id/activity_launch_details_first_stage_details_container_tv_legs"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/activity_launch_details_first_stage_details_container_tv_core_serial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/core_serial"
+                android:textColor="@color/main_white"
+                android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/activity_launch_details_first_stage_details_container_tv_for_core_serial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_white"
+                android:text="@{firstStage.coreSerial}"
+                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/activity_launch_details_first_stage_details_container_tv_grid_fins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:text="@string/grid_fins"
+                android:textColor="@color/main_white"
+                android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_core_serial"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/activity_launch_details_first_stage_details_container_tv_for_grid_fins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:src="@{(!firstStage.gridFins || firstStage.gridFins == null)? drawable/ic_cross_white_24dp : @drawable/ic_check_white_24dp }"
+                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_for_core_serial"
+                app:layout_constraintLeft_toRightOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/activity_launch_details_first_stage_details_container_tv_legs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:text="@string/legs"
+                android:textColor="@color/main_white"
+                android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_grid_fins"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/activity_launch_details_first_stage_details_container_tv_for_legs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                android:src="@{(!firstStage.legs || firstStage.legs == null)? @drawable/ic_cross_white_24dp : @drawable/ic_check_white_24dp }"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_for_grid_fins"
+                app:layout_constraintLeft_toRightOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/activity_launch_details_first_stage_details_container_tv_land_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:text="@string/landing_place"
+                android:textColor="@color/main_white"
+                android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_legs"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/activity_launch_details_first_stage_details_container_tv_for_land_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:textColor="@color/main_white"
+                android:text="@{(firstStage.landingPlace == null)? @string/no_landing_place : firstStage.landingPlace }"
+                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_for_legs"
+                app:layout_constraintLeft_toRightOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!--Collapsing layout for second stage data-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_launch_details_second_stage_details_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:text="@string/legs"
-            android:textColor="@color/main_white"
+            android:paddingStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+            android:paddingEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+            android:layout_below="@+id/activity_launch_details_first_stage_details_container"
+            android:background="@drawable/expanded_container_background">
+
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_container_top_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/second_stage"
+                android:textAlignment="textStart"
+                android:textColor="@color/main_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/activity_launch_details_second_stage_container_top_image"
+                android:layout_width="@dimen/activity_launch_details_collapsing_image_width"
+                android:layout_height="@dimen/activity_launch_details_collapsing_image_height"
+                android:src="@drawable/ic_expand_more_white_30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_launch_details_second_stage_container_top_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/activity_launch_details_second_stage_container_top_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_launch_details_second_stage_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
             android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_grid_fins"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/activity_launch_details_first_stage_details_container_tv_for_legs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:textColor="@color/main_white"
             android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_for_grid_fins"
-            app:layout_constraintLeft_toRightOf="parent"
-            />
+            android:layout_below="@+id/activity_launch_details_second_stage_details_container"
+            >
 
-        <TextView
-            android:id="@+id/activity_launch_details_first_stage_details_container_tv_land_place"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:text="@string/landing_place"
-            android:textColor="@color/main_white"
-            android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_legs"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_details_container_tv_nationality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nationality"
+                android:textColor="@color/main_white"
+                android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
 
-        <TextView
-            android:id="@+id/activity_launch_details_first_stage_details_container_tv_for_land_place"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:textColor="@color/main_white"
-            android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_for_legs"
-            app:layout_constraintLeft_toRightOf="parent"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_nationality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_white"
+                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:textTV="@{secondStage.nationality}"
+                app:errorText="@{@string/error_text}"
+                />
 
 
-    <!--Collapsing layout for second stage data-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_launch_details_second_stage_details_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-        android:paddingStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-        android:paddingEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-        android:layout_below="@+id/activity_launch_details_first_stage_details_container"
-        android:background="@drawable/expanded_container_background">
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_details_container_tv_manufacturer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:text="@string/manufacturer"
+                android:textColor="@color/main_white"
+                android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_nationality"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
 
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_container_top_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/second_stage"
-            android:textAlignment="textStart"
-            android:textColor="@color/main_white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/activity_launch_details_second_stage_container_top_image"
-            android:layout_width="@dimen/activity_launch_details_collapsing_image_width"
-            android:layout_height="@dimen/activity_launch_details_collapsing_image_height"
-            android:src="@drawable/ic_expand_more_white_30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/activity_launch_details_second_stage_container_top_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/activity_launch_details_second_stage_container_top_text" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_manufacturer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:textColor="@color/main_white"
+                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_nationality"
+                app:layout_constraintRight_toRightOf="parent"
+                app:textTV="@{secondStage.manufacturer}"
+                app:errorText="@{@string/error_text}"
+                />
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_launch_details_second_stage_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-        android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-        android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-        android:layout_below="@+id/activity_launch_details_second_stage_details_container"
-        >
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_details_container_tv_payload_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:text="@string/payload_type"
+                android:textColor="@color/main_white"
+                android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_manufacturer"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
 
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_details_container_tv_nationality"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/landing_place"
-            android:textColor="@color/main_white"
-            android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_payload_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:textColor="@color/main_white"
+                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_manufacturer"
+                app:layout_constraintRight_toRightOf="parent"
+                app:textTV="@{secondStage.payloadType}"
+                app:errorText="@{@string/error_text}"
+                />
 
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_nationality"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/main_white"
-            android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            />
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_details_container_tv_customers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:text="@string/customers"
+                android:textColor="@color/main_white"
+                android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_payload_type"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
 
-
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_details_container_tv_manufacturer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:text="@string/manufacturer"
-            android:textColor="@color/main_white"
-            android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_nationality"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_manufacturer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:textColor="@color/main_white"
-            android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_nationality"
-            app:layout_constraintRight_toRightOf="parent"
-            />
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_customers"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/activity_launches_rv_element_text_mission_name_width"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:maxLines="3"
+                android:textColor="@color/main_white"
+                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_payload_type"
+                app:layout_constraintRight_toRightOf="parent"
+                app:textTV="@{secondStage.customers}"
+                app:errorText="@{@string/error_text}"
+                />
 
 
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_details_container_tv_payload_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:text="@string/payload_type"
-            android:textColor="@color/main_white"
-            android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_manufacturer"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_details_container_tv_orbit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:text="@string/orbit"
+                android:textColor="@color/main_white"
+                android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_customers"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
 
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_payload_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:textColor="@color/main_white"
-            android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_manufacturer"
-            app:layout_constraintRight_toRightOf="parent"
-            />
+            <TextView
+                android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_orbit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:textColor="@color/main_white"
+                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_customers"
+                app:layout_constraintRight_toRightOf="parent"
+                app:textTV="@{secondStage.orbit}"
+                app:errorText="@{@string/error_text}"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_details_container_tv_customers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:text="@string/customers"
-            android:textColor="@color/main_white"
-            android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_payload_type"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_customers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:textColor="@color/main_white"
-            android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_payload_type"
-            app:layout_constraintRight_toRightOf="parent"
-            />
-
-
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_details_container_tv_orbit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:text="@string/orbit"
-            android:textColor="@color/main_white"
-            android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_customers"
-            app:layout_constraintLeft_toLeftOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_orbit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:textColor="@color/main_white"
-            android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_customers"
-            app:layout_constraintRight_toRightOf="parent"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

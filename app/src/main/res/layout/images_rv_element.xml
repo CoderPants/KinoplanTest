@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</LinearLayout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="url"
+            type="java.lang.String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_launch_details_rv_images_element"
+        android:layout_width="@dimen/activity_launch_details_rv_images_element_width"
+        android:layout_height="@dimen/activity_launch_details_rv_images_element_height"
+        android:padding="@dimen/activity_launch_details_rv_images_element_padding"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:url="url"
+            app:errorImage="@{@drawable/no_image_condition}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

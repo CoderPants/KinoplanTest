@@ -19,9 +19,11 @@ class Repository private constructor(application: Application) {
     {
         override fun onGetLaunchesResponse(receivedLaunches: JsonArray) {
 
-            val launches : List<Launch> = parser.parseFromJsonArray(jsonArray = receivedLaunches)
-            Log.i(ConstantsForApp.LOG_TAG, "Launches itself SIZE ${launches.size} RESPONSE SIZE ${receivedLaunches.size()}")
-            insertLaunches(launches)
+            CoroutineScope(Dispatchers.Default).launch {
+                val launches : List<Launch> = parser.parseFromJsonArray(jsonArray = receivedLaunches)
+                Log.i(ConstantsForApp.LOG_TAG, "Launches itself SIZE ${launches.size} RESPONSE SIZE ${receivedLaunches.size()}")
+                insertLaunchesAsync(launches)
+            }
         }
     })
 
@@ -49,7 +51,7 @@ class Repository private constructor(application: Application) {
 
     fun getLaunches() : LiveData< List<Launch> > = launchDao.getLaunches()
 
-    fun insertLaunches(launches : List<Launch>) = CoroutineScope(Dispatchers.IO).launch { launchDao.insertLaunches(launches) }
+    fun insertLaunchesAsync(launches : List<Launch>) = CoroutineScope(Dispatchers.IO).async { launchDao.insertLaunches(launches) }
 
     fun sendRequestToServer(){
         requestSender.sendGetLaunchesRequest(ConstantsForApp.SORT_CASE, ConstantsForApp.ORDER_CASE)

@@ -15,4 +15,8 @@ interface LaunchDao {
 
     @Query("SELECT * FROM launch_description")
     fun getLaunches() : LiveData< List<Launch> >
+
+    @Query("SELECT * FROM launch_description WHERE flight_number LIKE :id ")
+    fun getLaunchById(id : Int) : LiveData<Launch>
+
 }

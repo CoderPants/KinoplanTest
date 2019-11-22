@@ -11,5 +11,7 @@ class LaunchActivityViewModel(application: Application) : AndroidViewModel(appli
 
     fun getLaunches() : LiveData<List<Launch>> = repository.getLaunches()
 
+    fun getLaunchById(id : Int) : LiveData<Launch> = repository.getLaunchById(id)
+
     fun getDataFromServer() = repository.sendRequestToServer()
 }

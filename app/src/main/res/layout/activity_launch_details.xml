@@ -15,6 +15,18 @@
         name="links"
         type="kinoplan.testapp.spacexscheduler.pojos.Links" />
 
+    <variable
+        name="firstStage"
+        type="kinoplan.testapp.spacexscheduler.pojos.FirstStage" />
+
+    <variable
+        name="secondStage"
+        type="kinoplan.testapp.spacexscheduler.pojos.SecondStage" />
+
+    <variable
+        name="rocket"
+        type="kinoplan.testapp.spacexscheduler.pojos.Rocket" />
+
     </data>
 
     <ScrollView
@@ -154,6 +166,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_rocket_container"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:rocket = "@{rocket}"
+                app:firstStage = "@{firstStage}"
+                app:secondStage = "@{secondStage}"
                 />
 
             <!--//////////////////////////////////////////////////////////////////////////////////////////////////-->

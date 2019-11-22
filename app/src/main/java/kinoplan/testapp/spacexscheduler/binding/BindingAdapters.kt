@@ -33,4 +33,11 @@ object BindingAdapters {
 
     }
 
+    @BindingAdapter("app:checkImage", "app:crossImage", "app:attribute")
+    @JvmStatic
+    fun setImage(view : ImageView, checkImage : Drawable, crossImage : Drawable, hasAttribute : Boolean?) =
+        if(hasAttribute == false || hasAttribute == null)
+            view.setImageDrawable(crossImage)
+        else
+            view.setImageDrawable(checkImage)
 }

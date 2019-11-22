@@ -51,6 +51,9 @@ class Repository private constructor(application: Application) {
 
     fun getLaunches() : LiveData< List<Launch> > = launchDao.getLaunches()
 
+    fun getLaunchById(id : Int) : LiveData<Launch> = launchDao.getLaunchById(id)
+
+    //Launch or async?
     fun insertLaunchesAsync(launches : List<Launch>) = CoroutineScope(Dispatchers.IO).async { launchDao.insertLaunches(launches) }
 
     fun sendRequestToServer(){

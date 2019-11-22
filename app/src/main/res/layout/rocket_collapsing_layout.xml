@@ -89,9 +89,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-            android:layout_below="@+id/activity_launch_details_rocket_details_container"
             android:paddingStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
             android:paddingEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
+            android:layout_below="@+id/activity_launch_details_rocket_details_container"
             android:background="@drawable/expanded_container_background">
 
             <TextView
@@ -143,10 +143,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/main_white"
-                android:text="@{firstStage.coreSerial}"
                 android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toRightOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:textTV="@{firstStage.coreSerial}"
+                app:errorText="@{@string/error_text}"
                 />
 
             <TextView
@@ -166,10 +167,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-                android:src="@{(!firstStage.gridFins || firstStage.gridFins == null)? @drawable/ic_cross_white_24dp : @drawable/ic_check_white_24dp }"
                 android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
                 app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_for_core_serial"
-                app:layout_constraintLeft_toRightOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:checkImage="@{@drawable/ic_check_white_24dp}"
+                app:crossImage="@{@drawable/ic_cross_white_24dp}"
+                app:attribute="@{firstStage.gridFins}"
                 />
 
             <TextView
@@ -190,9 +193,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-                android:src="@{(!firstStage.legs || firstStage.legs == null)? @drawable/ic_cross_white_24dp : @drawable/ic_check_white_24dp }"
                 app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_for_grid_fins"
-                app:layout_constraintLeft_toRightOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:checkImage="@{@drawable/ic_check_white_24dp}"
+                app:crossImage="@{@drawable/ic_cross_white_24dp}"
+                app:attribute="@{firstStage.legs}"
                 />
 
             <TextView
@@ -213,10 +218,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 android:textColor="@color/main_white"
-                android:text="@{(firstStage.landingPlace == null)? @string/no_landing_place : firstStage.landingPlace }"
                 android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
                 app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_for_legs"
-                app:layout_constraintLeft_toRightOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:textTV="@{firstStage.landingPlace}"
+                app:errorText="@{@string/no_landing_place}"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -355,11 +361,12 @@
 
             <TextView
                 android:id="@+id/activity_launch_details_second_stage_details_container_tv_for_customers"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/activity_launches_rv_element_text_mission_name_width"
+                android:layout_width="@dimen/activity_launches_rv_element_text_mission_name_width"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 android:maxLines="3"
                 android:textColor="@color/main_white"
+                android:textAlignment="textEnd"
                 android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
                 app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_second_stage_details_container_tv_for_payload_type"
                 app:layout_constraintRight_toRightOf="parent"

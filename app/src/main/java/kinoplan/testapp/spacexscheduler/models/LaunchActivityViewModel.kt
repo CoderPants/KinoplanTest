@@ -9,6 +9,10 @@ import kinoplan.testapp.spacexscheduler.storage.Repository
 class LaunchActivityViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = Repository.getInstance(application)
 
+    //For animation checking
+    var isFirstStageLayoutCollapsed : Boolean = true
+    var isSecondStageLayoutCollapsed : Boolean = true
+
     fun getLaunches() : LiveData<List<Launch>> = repository.getLaunches()
 
     fun getLaunchById(id : Int) : LiveData<Launch> = repository.getLaunchById(id)

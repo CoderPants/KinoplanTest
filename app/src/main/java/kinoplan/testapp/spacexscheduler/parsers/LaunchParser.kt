@@ -1,8 +1,10 @@
 package kinoplan.testapp.spacexscheduler.parsers
 
+import android.util.Log
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
 import kinoplan.testapp.spacexscheduler.pojos.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -107,22 +109,12 @@ class LaunchParser {
         val wiki : JsonElement = links.get("wikipedia")
         val reddit : JsonElement = links.get("reddit_media")
         val article : JsonElement = links.get("article_link")
-        val video : JsonElement = links.get("video_link")
+        val video : JsonElement = links.get("youtube_id")
 
         val imagesJson : JsonArray = links.getAsJsonArray("flickr_images")
-
-        /*val images : ArrayList<String>? = if(imagesJson.size() == 0) null else ArrayList()
-
-        if(images != null) {
-            for(image in imagesJson)
-                images.add(image.asString)
-        }*/
-
-        var images : ArrayList<String>? = null
+        val images : ArrayList<String> = ArrayList()
 
         if(imagesJson.size() != 0) {
-            images = ArrayList()
-
             for(image in imagesJson)
                 images.add(image.asString)
         }

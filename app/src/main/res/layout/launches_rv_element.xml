@@ -14,7 +14,8 @@
 
         <variable
             name="handler"
-            type="kinoplan.testapp.spacexscheduler.binding.BindingHandler" />
+            type="kinoplan.testapp.spacexscheduler.ui.binding.BindingHandler" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +25,7 @@
         android:background="@color/main_black"
         android:padding="@dimen/activity_launches_rv_element_padding"
         android:layout_marginBottom="@dimen/activity_launches_rv_element_margin_bottom"
+        android:onClick="@{view -> handler.openLaunchDetailsActivity(context, launch.flight_number)}"
        >
 
         <ImageView

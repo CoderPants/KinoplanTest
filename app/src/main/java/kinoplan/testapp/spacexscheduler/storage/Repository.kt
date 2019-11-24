@@ -21,7 +21,6 @@ class Repository private constructor(application: Application) {
 
             CoroutineScope(Dispatchers.Default).launch {
                 val launches : List<Launch> = parser.parseFromJsonArray(jsonArray = receivedLaunches)
-                Log.i(ConstantsForApp.LOG_TAG, "Launches itself SIZE ${launches.size} RESPONSE SIZE ${receivedLaunches.size()}")
                 insertLaunchesAsync(launches)
             }
         }

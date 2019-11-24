@@ -15,9 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.LaunchDetailsActivity"></activity>
-        <activity android:name=".activities.LaunchesActivity" />
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".ui.activities.ZoomImageActivity"></activity>
+        <activity android:name=".ui.activities.LaunchDetailsActivity" />
+        <activity android:name=".ui.activities.LaunchesActivity" />
+        <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

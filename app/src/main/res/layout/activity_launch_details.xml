@@ -26,6 +26,10 @@
     <variable
         name="rocket"
         type="kinoplan.testapp.spacexscheduler.pojos.Rocket" />
+        
+    <variable
+        name="handler"
+        type="kinoplan.testapp.spacexscheduler.ui.binding.BindingHandler"/>
 
     </data>
 
@@ -38,7 +42,21 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/activity_launch_details_ending_margin_bottom">
+
+            <ImageView
+                android:id="@+id/activity_launch_details_go_back_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back_white_30dp"
+                android:scaleType="fitStart"
+                android:padding="@dimen/launches_activity_rl_view_padding"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/activity_launch_details_top_container"
+                android:background="@color/colorPrimary"
+                />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/activity_launch_details_top_container"
@@ -47,7 +65,8 @@
                 android:background="@color/main_black"
                 android:padding="@dimen/activity_launches_rv_element_padding"
                 android:layout_marginBottom="@dimen/activity_launches_rv_element_margin_bottom"
-                app:layout_constraintTop_toTopOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_go_back_btn"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent">
 
@@ -121,39 +140,21 @@
 
             <!--//////////////////////////////////////////////////////////////////////////////////////////////////-->
             <!-- ROCKET DATA-->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
                 android:id="@+id/activity_launch_details_rocket_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/rocket_title_activity_launch_details"
+                android:textAlignment="textStart"
+                android:paddingStart="@dimen/activity_launch_details_rocket_container_text_margin_start_end"
+                android:paddingEnd="@dimen/activity_launch_details_rocket_container_text_margin_start_end"
                 android:padding="@dimen/activity_launch_details_top_containers_padding"
+                android:textColor="@color/main_white"
                 android:background="@drawable/expanded_container_background"
+                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_top_container"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent">
-
-                <TextView
-                    android:id="@+id/activity_launch_details_rocket_container_top_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rocket_title_activity_launch_details"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/main_white"
-                    android:layout_marginStart="@dimen/activity_launch_details_rocket_container_text_margin_start_end"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/activity_launch_details_rocket_container_top_image"
-                    android:layout_width="@dimen/activity_launch_details_collapsing_image_width"
-                    android:layout_height="@dimen/activity_launch_details_collapsing_image_height"
-                    android:src="@drawable/ic_expand_more_white_30dp"
-                    android:layout_marginEnd="@dimen/activity_launch_details_rocket_container_text_margin_start_end"
-                    app:layout_constraintBottom_toBottomOf="@+id/activity_launch_details_rocket_container_top_text"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/activity_launch_details_rocket_container_top_text" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintLeft_toLeftOf="parent" />
 
             <include
                 android:id="@+id/activity_launch_details_rocket_collapsing_container"
@@ -220,104 +221,67 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 />
 
-            <TextView
+            <ImageView
                 android:id="@+id/activity_launch_details_link_wiki"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/wikipedia"
-                android:textColor="@color/main_white"
+                android:layout_width="@dimen/activity_launch_details_images_width"
+                android:layout_height="@dimen/activity_launch_details_images_height"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 android:layout_marginStart="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
+                android:src="@drawable/wikipedia_logo"
+                android:visibility="@{links.wikipedia == null? View.GONE : View.VISIBLE}"
+                android:onClick="@{view -> handler.openLink(context, links.wikipedia)}"
                 app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_links_top_text"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/activity_launch_details_link_article"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
 
-            <TextView
-                android:id="@+id/activity_launch_details_link_for_wiki"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{links.wikipedia}"
-                android:textColor="@color/main_white"
-                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
-                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_links_top_text"
-                app:layout_constraintRight_toRightOf="parent"
-                />
-
-
-            <TextView
-                android:id="@+id/activity_launch_details_link_reddit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/reddit"
-                android:textColor="@color/main_white"
-                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-                android:layout_marginStart="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
-                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_link_wiki"
-                app:layout_constraintLeft_toLeftOf="parent"
-                />
-
-            <TextView
-                android:id="@+id/activity_launch_details_link_for_reddit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{links.reddit}"
-                android:textColor="@color/main_white"
-                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
-                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_link_for_wiki"
-                app:layout_constraintRight_toRightOf="parent"
-                />
-
-            <TextView
+            <ImageView
                 android:id="@+id/activity_launch_details_link_article"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mission_article"
-                android:textColor="@color/main_white"
+                android:layout_width="@dimen/activity_launch_details_images_width"
+                android:layout_height="@dimen/activity_launch_details_images_height"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 android:layout_marginStart="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
-                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_link_reddit"
-                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/article_logo"
+                android:visibility="@{links.article == null? View.GONE : View.VISIBLE}"
+                android:onClick="@{view -> handler.openLink(context, links.article)}"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_links_top_text"
+                app:layout_constraintLeft_toRightOf="@+id/activity_launch_details_link_wiki"
+                app:layout_constraintRight_toLeftOf="@+id/activity_launch_details_link_youtube"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
 
-            <TextView
-                android:id="@+id/activity_launch_details_link_for_article"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{links.article}"
-                android:textColor="@color/main_white"
-                android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
-                android:layout_marginEnd="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
-                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_link_for_reddit"
-                app:layout_constraintRight_toRightOf="parent"
-                />
-
-
-            <TextView
-                android:id="@+id/activity_launch_details_link_video"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mission_video"
-                android:textColor="@color/main_white"
+            <ImageView
+                android:id="@+id/activity_launch_details_link_youtube"
+                android:layout_width="@dimen/activity_launch_details_images_width"
+                android:layout_height="@dimen/activity_launch_details_images_height"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
                 android:layout_marginStart="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
-                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_link_article"
-                app:layout_constraintLeft_toLeftOf="parent"
+                android:src="@drawable/youtube_logo"
+                android:visibility="@{links.video == null? View.GONE : View.VISIBLE}"
+                android:onClick="@{view -> handler.openYouTubeLink(context, links.video)}"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_links_top_text"
+                app:layout_constraintLeft_toRightOf="@+id/activity_launch_details_link_article"
+                app:layout_constraintRight_toLeftOf="@+id/activity_launch_details_link_reddit"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
 
-            <TextView
-                android:id="@+id/activity_launch_details_link_for_video"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{links.video}"
-                android:textColor="@color/main_white"
+            <ImageView
+                android:id="@+id/activity_launch_details_link_reddit"
+                android:layout_width="@dimen/activity_launch_details_images_width"
+                android:layout_height="@dimen/activity_launch_details_images_height"
                 android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
+                android:layout_marginStart="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
                 android:layout_marginEnd="@dimen/activity_launch_details_collapsing_rocket_container_margin_start_end"
-                android:layout_marginBottom="@dimen/activity_launch_details_ending_margin_bottom"
-                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_link_for_article"
+                android:src="@drawable/reddit_logo"
+                android:visibility="@{links.reddit == null? View.GONE : View.VISIBLE}"
+                android:onClick="@{view -> handler.openLink(context, links.reddit)}"
+                app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_links_top_text"
+                app:layout_constraintLeft_toRightOf="@+id/activity_launch_details_link_youtube"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

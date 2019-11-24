@@ -1,6 +1,7 @@
-package kinoplan.testapp.spacexscheduler.binding
+package kinoplan.testapp.spacexscheduler.ui.binding
 
 import android.graphics.drawable.Drawable
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -8,9 +9,7 @@ import androidx.databinding.BindingAdapter
 
 import com.squareup.picasso.Picasso
 import kinoplan.testapp.spacexscheduler.R
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kinoplan.testapp.spacexscheduler.ui.animation.AnimationHelper
 
 object BindingAdapters {
 
@@ -40,4 +39,6 @@ object BindingAdapters {
             view.setImageDrawable(crossImage)
         else
             view.setImageDrawable(checkImage)
+
+
 }

@@ -1,15 +1,12 @@
-package kinoplan.testapp.spacexscheduler.adapters
+package kinoplan.testapp.spacexscheduler.ui.adapters
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kinoplan.testapp.spacexscheduler.activities.LaunchDetailsActivity
-import kinoplan.testapp.spacexscheduler.constants.IntentKeys
+import kinoplan.testapp.spacexscheduler.ui.binding.BindingHandler
 import kinoplan.testapp.spacexscheduler.databinding.LaunchesRvElementBinding
 import kinoplan.testapp.spacexscheduler.pojos.Launch
+import kinoplan.testapp.spacexscheduler.ui.activities.LaunchDetailsActivity
 
 class LaunchesAdapter : RecyclerView.Adapter<LaunchesAdapter.LaunchesViewHolder>() {
 
@@ -18,6 +15,8 @@ class LaunchesAdapter : RecyclerView.Adapter<LaunchesAdapter.LaunchesViewHolder>
         field = value
         notifyDataSetChanged()
     }
+
+    val handler : BindingHandler = BindingHandler()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LaunchesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -33,16 +32,8 @@ class LaunchesAdapter : RecyclerView.Adapter<LaunchesAdapter.LaunchesViewHolder>
 
         fun bind(launch : Launch){
             binding.launch = launch
+            binding.handler = handler
             binding.executePendingBindings()
-
-            val constraintLayout = binding.activityLaunchesRvElementBaseLayout
-
-            constraintLayout.setOnClickListener {
-                val context : Context = it.context
-                val intent = Intent(context, LaunchDetailsActivity::class.java)
-                intent.putExtra(IntentKeys.FLIGHT_ID, launch.flight_number)
-                context.startActivity(intent)
-            }
         }
     }
 }

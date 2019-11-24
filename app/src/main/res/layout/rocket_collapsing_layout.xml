@@ -17,6 +17,10 @@
         <variable
             name="rocket"
             type="kinoplan.testapp.spacexscheduler.pojos.Rocket" />
+
+        <variable
+            name="animationHelper"
+            type="kinoplan.testapp.spacexscheduler.ui.animation.AnimationHelper" />
     </data>
 
     <RelativeLayout
@@ -121,11 +125,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/activity_launch_details_first_stage_details_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
             android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
             android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            android:layout_below="@+id/activity_launch_details_first_stage_container">
+            android:layout_below="@+id/activity_launch_details_first_stage_container"
+            >
 
             <TextView
                 android:id="@+id/activity_launch_details_first_stage_details_container_tv_core_serial"
@@ -222,15 +227,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_first_stage_details_container_tv_for_legs"
                 app:layout_constraintRight_toRightOf="parent"
                 app:textTV="@{firstStage.landingPlace}"
-                app:errorText="@{@string/no_landing_place}"
+                app:errorText="@{@string/error_text}"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <!--Collapsing layout for second stage data-->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/activity_launch_details_second_stage_details_container"
+            android:id="@+id/activity_launch_details_second_stage_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
@@ -261,15 +265,15 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+        <!--Second stage data-->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/activity_launch_details_second_stage_container"
+            android:id="@+id/activity_launch_details_second_stage_details_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="@dimen/activity_launch_details_collapsing_rocket_container_margin_top"
             android:layout_marginStart="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
             android:layout_marginEnd="@dimen/activity_launch_details_collapsing_container_tv_margin_start_end"
-            android:layout_below="@+id/activity_launch_details_second_stage_details_container"
+            android:layout_below="@+id/activity_launch_details_second_stage_container"
             >
 
             <TextView

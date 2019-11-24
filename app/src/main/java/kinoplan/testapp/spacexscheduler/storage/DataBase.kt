@@ -8,7 +8,7 @@ import kinoplan.testapp.spacexscheduler.dao.LaunchDao
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 import kinoplan.testapp.spacexscheduler.pojos.SecondStage
 
-@Database(entities = [Launch::class], version = 2)
+@Database(entities = [Launch::class], version = 1)
 
 @TypeConverters(RocketConverter::class, LinksConverter::class,
     FirstStageConverter::class, SecondStageConverter::class, ArrayConverter::class)

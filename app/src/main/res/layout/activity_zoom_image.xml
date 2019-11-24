@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="url"
+            type="java.lang.String" />
+    </data>
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activities.ZoomImageActivity"
+        android:background="@drawable/main_activity_background">
+
+        <ImageView
+            android:id="@+id/activity_launch_details_go_back_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back_white_30dp"
+            android:scaleType="fitStart"
+            android:padding="@dimen/launches_activity_rl_view_padding"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"
+            />
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/zoom_activity_main_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            app:url="@{url}"
+            app:errorImage="@{@drawable/no_image_condition}"
+            android:layout_below="@+id/activity_launch_details_go_back_btn"
+            />
+
+    </RelativeLayout>
+</layout>

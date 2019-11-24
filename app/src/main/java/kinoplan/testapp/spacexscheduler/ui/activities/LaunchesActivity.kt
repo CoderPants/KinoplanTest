@@ -1,4 +1,4 @@
-package kinoplan.testapp.spacexscheduler.activities
+package kinoplan.testapp.spacexscheduler.ui.activities
 
 import android.os.Bundle
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kinoplan.testapp.spacexscheduler.R
-import kinoplan.testapp.spacexscheduler.adapters.LaunchesAdapter
+import kinoplan.testapp.spacexscheduler.ui.adapters.LaunchesAdapter
 import kinoplan.testapp.spacexscheduler.models.LaunchActivityViewModel
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 

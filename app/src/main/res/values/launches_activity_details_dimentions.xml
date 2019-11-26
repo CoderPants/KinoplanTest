@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="activity_launch_details_collapsing_image_width">30dp</dimen>
-    <dimen name="activity_launch_details_collapsing_image_height">30dp</dimen>
+    <dimen name="activity_launch_details_collapsing_image_width">32dp</dimen>
+    <dimen name="activity_launch_details_collapsing_image_height">32dp</dimen>
     <dimen name="activity_launch_details_rocket_container_text_margin_start_end">20dp</dimen>
     <dimen name="activity_launch_activity_expanding_container_corners">10dp</dimen>
     <dimen name="activity_launch_details_collapsing_rocket_container_margin_start_end">25dp</dimen>
@@ -15,4 +15,7 @@
     <dimen name="activity_launch_details_rv_images_element_width">96dp</dimen>
     <dimen name="activity_launch_details_rv_images_element_height">96dp</dimen>
     <dimen name="activity_launch_details_rv_images_element_padding">16dp</dimen>
+
+    <dimen name="activity_launch_details_images_width">36dp</dimen>
+    <dimen name="activity_launch_details_images_height">36dp</dimen>
 </resources>

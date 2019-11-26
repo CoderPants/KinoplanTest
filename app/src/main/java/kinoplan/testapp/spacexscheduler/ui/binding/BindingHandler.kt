@@ -5,13 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import kinoplan.testapp.spacexscheduler.constants.IntentKeys
-import kinoplan.testapp.spacexscheduler.ui.activities.BaseActivity
 import kinoplan.testapp.spacexscheduler.ui.activities.LaunchDetailsActivity
 import kinoplan.testapp.spacexscheduler.ui.activities.ZoomImageActivity
+import java.lang.StringBuilder
 
 
 class BindingHandler {
-
 
     //Two different functions for different intent extras
     //No generics, 'cos we need different intent keys
@@ -21,9 +20,17 @@ class BindingHandler {
         context.startActivity(intent)
     }
 
-    fun openZoomImageActivity(context: Context, url : String){
+    fun openZoomImageActivity(context: Context, images : List<String>, position : Int ){
         val intent = Intent(context, ZoomImageActivity::class.java)
-        intent.putExtra(IntentKeys.IMAGE_URL, url)
+
+        //Easy for intent parsing
+        val stringBuilder = StringBuilder()
+
+        for (image in images)
+            stringBuilder.append("$image ")
+
+        intent.putExtra(IntentKeys.IMAGES, stringBuilder.toString().trim())
+        intent.putExtra(IntentKeys.IMAGE_POSITION, position)
         context.startActivity(intent)
     }
 

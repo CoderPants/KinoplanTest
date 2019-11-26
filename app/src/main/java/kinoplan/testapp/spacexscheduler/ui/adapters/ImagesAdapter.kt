@@ -24,12 +24,15 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImagesViewHolder>() {
 
     override fun getItemCount(): Int = images.size
 
-    override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) = holder.bind(image = images[position])
+    override fun onBindViewHolder(holder: ImagesViewHolder, position: Int) =
+        holder.bind(image = images[position], position = position)
 
     inner class ImagesViewHolder(private val binding: ImagesRvElementBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(image : String){
+        fun bind(image : String, position : Int){
             binding.url = image
+            binding.images = images
+            binding.position = position
             binding.handler = handler
             binding.executePendingBindings()
         }

@@ -19,9 +19,9 @@ class ZoomImageActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getRidOfTopBar()
 
         setContentView(R.layout.activity_zoom_image)
+        getRidOfTopBar()
 
         val imagesString : String? = intent.getStringExtra(IntentKeys.IMAGES)
         val position : Int  = intent.getIntExtra(IntentKeys.IMAGE_POSITION, -1)
@@ -36,7 +36,6 @@ class ZoomImageActivity : BaseActivity() {
         createViewPager(position)
 
         setOnBackPressedLogic()
-
     }
 
     private fun setOnBackPressedLogic() {
@@ -72,8 +71,5 @@ class ZoomImageActivity : BaseActivity() {
 
         override fun getCount(): Int =  images.size
 
-        override fun getPageTitle(position: Int): CharSequence? {
-            return "$position"
-        }
     }
 }

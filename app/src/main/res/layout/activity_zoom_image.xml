@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
+    android:id="@+id/zoom_activity_background_carrying_view"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.ZoomImageActivity"
-    android:background="@drawable/main_activity_background">
+    android:background="@color/main_black">
 
     <ImageView
         android:id="@+id/zoom_activity_go_back_btn"
@@ -29,7 +30,7 @@
         <androidx.viewpager.widget.PagerTabStrip
             android:id="@+id/zoom_activity_pager_tab_strip"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity = "bottom"
             android:padding="@dimen/pager_tab_strip_padding"
             android:textAlignment="center">

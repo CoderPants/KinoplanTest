@@ -6,4 +6,5 @@ object ConstantsForApp {
     const val DB_NAME : String = "LAUNCH_BASE"
     const val SORT_CASE : String = "launch_date_utc"
     const val ORDER_CASE : String = "desc"
+    const val SCROLL_POSITION : String = "SCROLL_POSITION"
 }

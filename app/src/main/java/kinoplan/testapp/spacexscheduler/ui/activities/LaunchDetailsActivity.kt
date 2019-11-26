@@ -106,11 +106,17 @@ class LaunchDetailsActivity : BaseActivity() {
         val secondStageLayoutCollapsing : ConstraintLayout = rocketDetailsBinding.activityLaunchDetailsSecondStageDetailsContainer
         val secondStageImage : ImageView = rocketDetailsBinding.activityLaunchDetailsSecondStageContainerTopImage
 
+        val detailsLayout : ConstraintLayout = rocketDetailsBinding.activityLaunchDetailsDetailsContainer
+        val detailsLayoutCollapsing : ConstraintLayout = rocketDetailsBinding.activityLaunchDetailsDetailsForDetailsContainer
+        val detailsImage : ImageView = rocketDetailsBinding.activityLaunchDetailsDetailsTopImage
+
         checkIfCollapsed(firstStageLayoutCollapsing, firstStageImage, viewModel.isFirstStageLayoutCollapsed)
         checkIfCollapsed(secondStageLayoutCollapsing, secondStageImage, viewModel.isSecondStageLayoutCollapsed)
+        checkIfCollapsed(detailsLayoutCollapsing, detailsImage, viewModel.isDetailsLayoutCollapsed)
 
         createClickListenersForAnimation(firstStageLayout, firstStageLayoutCollapsing, firstStageImage,
-            secondStageLayout, secondStageLayoutCollapsing, secondStageImage )
+            secondStageLayout, secondStageLayoutCollapsing, secondStageImage,
+            detailsLayout, detailsLayoutCollapsing, detailsImage)
     }
 
     private fun startAnimation(container : View, isCollapsed : Boolean, image : ImageView) =
@@ -130,7 +136,10 @@ class LaunchDetailsActivity : BaseActivity() {
         firstStageImage : ImageView,
         secondStageLayout : View,
         secondStageLayoutCollapsing : View,
-        secondStageImage : ImageView
+        secondStageImage : ImageView,
+        detailsLayout : View,
+        detailsLayoutCollapsing : View,
+        detailsImage : ImageView
     ) {
         firstStageLayout.setOnClickListener {
             startAnimation(firstStageLayoutCollapsing,  viewModel.isFirstStageLayoutCollapsed, firstStageImage)
@@ -140,6 +149,11 @@ class LaunchDetailsActivity : BaseActivity() {
         secondStageLayout.setOnClickListener {
             startAnimation(secondStageLayoutCollapsing,  viewModel.isSecondStageLayoutCollapsed, secondStageImage)
             viewModel.isSecondStageLayoutCollapsed = !viewModel.isSecondStageLayoutCollapsed
+        }
+
+        detailsLayout.setOnClickListener {
+            startAnimation(detailsLayoutCollapsing,  viewModel.isDetailsLayoutCollapsed, detailsImage)
+            viewModel.isDetailsLayoutCollapsed = !viewModel.isDetailsLayoutCollapsed
         }
     }
 

@@ -9,18 +9,11 @@
     tools:showIn="@layout/activity_main"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ProgressBar
-            android:id="@+id/launches_activity_loading_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/launches_activity_progressbar_margin_top"
-            android:indeterminateTint="@color/main_white"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/launches_activity_rv_launches"
@@ -28,5 +21,16 @@
             android:layout_height="match_parent">
         </androidx.recyclerview.widget.RecyclerView>
 
-    </LinearLayout>
+        <ProgressBar
+            android:id="@+id/launches_activity_loading_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/launches_activity_progressbar_margin_top"
+            android:indeterminateTint="@color/main_white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

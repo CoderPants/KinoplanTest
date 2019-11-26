@@ -5,11 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_activity_background_carrying_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:fitsSystemWindows="true"
-        android:background="@drawable/main_activity_background"
+        android:background="@drawable/main_activity_background_portrait"
         tools:context=".ui.activities.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -26,7 +27,7 @@
                 app:expandedTitleGravity="top"
                 >
                 <ImageView
-                    android:id="@+id/launches_activity_refresh_btn"
+                    android:id="@+id/main_activity_refresh_btn"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_refresh_white_30dp"

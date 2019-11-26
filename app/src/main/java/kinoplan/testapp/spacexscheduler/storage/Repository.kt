@@ -18,10 +18,20 @@ class Repository private constructor(application: Application) {
     private val requestSender : RequestSender = RequestSender(object : RequestSender.RequestCallBack
     {
         override fun onGetLaunchesResponse(receivedLaunches: JsonArray) {
-
             CoroutineScope(Dispatchers.Default).launch {
                 val launches : List<Launch> = parser.parseFromJsonArray(jsonArray = receivedLaunches)
-                insertLaunchesAsync(launches)
+                val launchesFromDataBase : List<Launch> = getLaunchesAsync()
+
+                Log.i(ConstantsForApp.LOG_TAG, "${launchesFromDataBase.size}")
+                /*//How to trigger live data other way
+                insertLaunchesAsync(launches)*/
+                Log.i(ConstantsForApp.LOG_TAG, "${launches.size} ${launchesFromDataBase.size}")
+                if(launches != launchesFromDataBase)
+                    insertLaunchesAsync(launches)
+                else {
+                    Log.i(ConstantsForApp.LOG_TAG, "Data in base is up to date!")
+                    insertLaunchesAsync(ArrayList<Launch>())
+                }
             }
         }
     })
@@ -52,11 +62,12 @@ class Repository private constructor(application: Application) {
 
     fun getLaunchById(id : Int) : LiveData<Launch> = launchDao.getLaunchById(id)
 
-    //Launch or async?
     fun insertLaunchesAsync(launches : List<Launch>) = CoroutineScope(Dispatchers.IO).async { launchDao.insertLaunches(launches) }
 
     fun sendRequestToServer(){
         requestSender.sendGetLaunchesRequest(ConstantsForApp.SORT_CASE, ConstantsForApp.ORDER_CASE)
     }
+
+    suspend fun getLaunchesAsync() : List<Launch> = launchDao.getLaunchesAsync()
 
 }

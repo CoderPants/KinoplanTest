@@ -18,4 +18,5 @@
 
     <dimen name="activity_launch_details_images_width">36dp</dimen>
     <dimen name="activity_launch_details_images_height">36dp</dimen>
+    <dimen name="activity_launch_details_images_container_margin_top">20dp</dimen>
 </resources>

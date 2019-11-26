@@ -12,6 +12,7 @@
     <string name="legs">Legs</string>
     <string name="landing_place">Landing place</string>
     <string name="second_stage">Second stage</string>
+    <string name="details">Details</string>
     <string name="nationality">Nationality</string>
     <string name="manufacturer">Manufacturer</string>
     <string name="payload_type">Payload type</string>

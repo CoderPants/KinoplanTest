@@ -6,8 +6,4 @@ data class SecondStage(
     val payloadType : String?,
     val customers : String?,
     val orbit : String?
-) {
-    override fun toString(): String {
-        return "SecondStage(nationality='$nationality', manufacturer='$manufacturer', payloadType='$payloadType', customers='$customers', orbit='$orbit')"
-    }
-}
+)

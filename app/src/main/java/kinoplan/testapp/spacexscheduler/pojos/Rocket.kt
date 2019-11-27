@@ -5,5 +5,4 @@ data class Rocket (
     val type : String,
     val firstStage: FirstStage,
     val secondStage: SecondStage
-){
-}
+)

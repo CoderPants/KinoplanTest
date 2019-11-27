@@ -11,7 +11,7 @@ class RequestSender (private val callBack: RequestCallBack) {
 
     fun sendGetLaunchesRequest(sortCase : String, orderCase : String){
 
-        val service = RetrofitInstance.instance.create(GetDataService::class.java)
+        val service = RetrofitInstance.RETROFIT.create(GetDataService::class.java)
 
         val getLaunchesCall = service.getAllLaunches(sortCase, orderCase)
 

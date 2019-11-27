@@ -27,19 +27,4 @@ data class Launch (
         return dateAndTimePair[0] +
                 "\n ${time.substring(0, time.lastIndexOf('.'))}"
     }
-
-    override fun toString(): String {
-        return "Launch(flight_number=$flight_number, " +
-                "mission_name='$mission_name', " +
-                "launch_date_utc='$launch_date_utc', " +
-                "launch_success=$launch_success, " +
-                "details=$details, " +
-                "image=$image, " +
-                "smallImage=$smallImage, " +
-                "links=$links, " +
-                "rocket=$rocket, " +
-                "key=$key)"
-    }
-
-
 }

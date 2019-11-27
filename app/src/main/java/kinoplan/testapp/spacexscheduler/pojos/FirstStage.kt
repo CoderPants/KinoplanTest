@@ -5,8 +5,4 @@ data class FirstStage (
     val gridFins : Boolean?,
     val legs : Boolean?,
     val landingPlace : String?
-){
-    override fun toString(): String {
-        return "FirstStage(coreSerial=$coreSerial, gridFins=$gridFins, legs=$legs, landingPlace=$landingPlace)"
-    }
-}
+)

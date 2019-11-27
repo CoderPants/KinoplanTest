@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:layout_centerInParent="true"
-            app:url="@{url}"
+            app:bigImage="@{url}"
             app:errorImage="@{@drawable/no_image_condition}"
             />
 

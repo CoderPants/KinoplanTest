@@ -1,7 +1,9 @@
 package kinoplan.testapp.spacexscheduler.models
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
+import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 import kinoplan.testapp.spacexscheduler.storage.Repository
 
@@ -17,10 +19,6 @@ class LaunchActivityViewModel(application: Application) : AndroidViewModel(appli
             callBackFromViewModel!!.noBooksAddedCondition()
         }
     }
-    //Really bad
-    init {
-        repository.callBack = callBackFromRepository
-    }
 
     //For animation checking
     var isFirstStageLayoutCollapsed : Boolean = true
@@ -32,6 +30,10 @@ class LaunchActivityViewModel(application: Application) : AndroidViewModel(appli
     fun getLaunchById(id : Int) : LiveData<Launch> = repository.getLaunchById(id)
 
     fun getDataFromServer() = repository.sendRequestToServer()
+
+    fun createCallBackFromRepository() {
+        repository.callBack = callBackFromRepository
+    }
 
     //Really bad
     interface VMCallBack{

@@ -24,7 +24,6 @@ class ZoomImageFragment : Fragment() {
 
         return try {
             binding = DataBindingUtil.inflate(inflater, R.layout.zoom_fragment, container, false)
-            val view = binding.root
             binding.url = arguments?.getString(IntentKeys.IMAGE_URL)
             binding.root
         } catch (e: Exception) {
@@ -34,16 +33,5 @@ class ZoomImageFragment : Fragment() {
             )
             super.onCreateView(inflater, container, savedInstanceState)
         }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        try {
-            super.onViewCreated(view, savedInstanceState)
-        }   catch (e : java.lang.Exception)
-        {
-            Log.i(ConstantsForApp.LOG_TAG, "Here ", e)
-        }
-
-
     }
 }

@@ -29,6 +29,20 @@ object BindingAdapters {
                 .into(view)
     }
 
+    @BindingAdapter("app:bigImage", "app:errorImage")
+    @JvmStatic
+    fun loadBigImage(view: ImageView, url: String?, errorImage: Drawable) {
+        if(url != null)
+            Picasso.get()
+                .load(url)
+                .error(errorImage)
+                .into(view)
+        else
+            Picasso.get()
+                .load(R.drawable.ic_application)
+                .into(view)
+    }
+
     @BindingAdapter("app:textTV", "app:errorText")
     @JvmStatic
     fun setText(view : TextView, text : String?, errorText: String){

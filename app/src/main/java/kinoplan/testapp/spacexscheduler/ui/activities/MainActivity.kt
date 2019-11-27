@@ -16,6 +16,7 @@ import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
 import kinoplan.testapp.spacexscheduler.models.LaunchActivityViewModel
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 import kinoplan.testapp.spacexscheduler.ui.adapters.LaunchesAdapter
+import kinoplan.testapp.spacexscheduler.ui.customviews.OverlayView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,6 +40,10 @@ class MainActivity : BaseActivity(), LifecycleObserver {
         checkOrientationOfPhone(findViewById(R.id.main_activity_background_carrying_view))
 
         viewModel = ViewModelProviders.of(this).get(LaunchActivityViewModel::class.java)
+        viewModel.createCallBackFromRepository()
+        //Really bad
+        createCallBack()
+
         recyclerView = findViewById(R.id.launches_activity_rv_launches)
         recyclerView.setHasFixedSize(true)
 
@@ -51,9 +56,6 @@ class MainActivity : BaseActivity(), LifecycleObserver {
         recyclerViewState = savedInstanceState?.getParcelable(ConstantsForApp.SCROLL_POSITION)
 
         setTopBarLogic(findViewById(R.id.main_activity_refresh_btn))
-
-        //Really bad
-        createCallBack()
 
     }
 
@@ -83,8 +85,6 @@ class MainActivity : BaseActivity(), LifecycleObserver {
                 {
                     loadingIndicator.visibility = View.GONE
                     adapter.launches = launches
-
-                    recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
                 }
 
             })
@@ -93,6 +93,10 @@ class MainActivity : BaseActivity(), LifecycleObserver {
     private fun recyclerViewCreation(){
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+        /*recyclerView.viewTreeObserver
+            .addOnGlobalLayoutListener {
+                recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
+            }*/
     }
 
     private fun setTopBarLogic( refreshBtn : View){

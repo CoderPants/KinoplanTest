@@ -1,13 +1,14 @@
 package kinoplan.testapp.spacexscheduler.ui.activities
 
-import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Parcelable
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kinoplan.testapp.spacexscheduler.R
@@ -17,7 +18,6 @@ import kinoplan.testapp.spacexscheduler.pojos.Launch
 import kinoplan.testapp.spacexscheduler.ui.adapters.LaunchesAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 
@@ -27,6 +27,7 @@ class MainActivity : BaseActivity(), LifecycleObserver {
 
     private lateinit var recyclerView : RecyclerView
     private var recyclerViewState : Parcelable? = null
+
     private val adapter : LaunchesAdapter = LaunchesAdapter()
 
     private lateinit var loadingIndicator : ProgressBar
@@ -51,6 +52,20 @@ class MainActivity : BaseActivity(), LifecycleObserver {
 
         setTopBarLogic(findViewById(R.id.main_activity_refresh_btn))
 
+        //Really bad
+        createCallBack()
+
+    }
+
+    //Really bad
+    private fun createCallBack() {
+        val callBackFromViewModel : LaunchActivityViewModel.VMCallBack = object : LaunchActivityViewModel.VMCallBack {
+            override fun noBooksAddedCondition() {
+               CoroutineScope(Dispatchers.Main).launch {  loadingIndicator.visibility = View.GONE }
+            }
+        }
+
+        viewModel.callBackFromViewModel = callBackFromViewModel
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

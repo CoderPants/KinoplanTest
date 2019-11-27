@@ -15,6 +15,9 @@ class Repository private constructor(application: Application) {
 
     private val parser : LaunchParser = LaunchParser()
 
+    //Really bad!
+    var callBack : RepositoryCallBack ? = null
+
     private val requestSender : RequestSender = RequestSender(object : RequestSender.RequestCallBack
     {
         override fun onGetLaunchesResponse(receivedLaunches: JsonArray) {
@@ -22,15 +25,11 @@ class Repository private constructor(application: Application) {
                 val launches : List<Launch> = parser.parseFromJsonArray(jsonArray = receivedLaunches)
                 val launchesFromDataBase : List<Launch> = getLaunchesAsync()
 
-                Log.i(ConstantsForApp.LOG_TAG, "${launchesFromDataBase.size}")
-                /*//How to trigger live data other way
-                insertLaunchesAsync(launches)*/
-                Log.i(ConstantsForApp.LOG_TAG, "${launches.size} ${launchesFromDataBase.size}")
                 if(launches != launchesFromDataBase)
                     insertLaunchesAsync(launches)
                 else {
                     Log.i(ConstantsForApp.LOG_TAG, "Data in base is up to date!")
-                    insertLaunchesAsync(ArrayList<Launch>())
+                    callBack!!.noBooksAddedCondition()
                 }
             }
         }
@@ -69,5 +68,11 @@ class Repository private constructor(application: Application) {
     }
 
     suspend fun getLaunchesAsync() : List<Launch> = launchDao.getLaunchesAsync()
+
+
+    //Really bad
+    interface RepositoryCallBack{
+        fun noBooksAddedCondition()
+    }
 
 }

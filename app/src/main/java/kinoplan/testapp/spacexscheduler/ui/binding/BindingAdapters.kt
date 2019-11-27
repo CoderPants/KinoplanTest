@@ -17,9 +17,16 @@ object BindingAdapters {
     @JvmStatic
     fun loadImage(view: ImageView, url: String?, errorImage: Drawable) {
         if(url != null)
-            Picasso.get().load(url).error(errorImage).into(view)
+            Picasso.get()
+                .load(url)
+                .fit()
+                .centerCrop()
+                .error(errorImage)
+                .into(view)
         else
-            Picasso.get().load(R.drawable.ic_application).into(view)
+            Picasso.get()
+                .load(R.drawable.ic_application)
+                .into(view)
     }
 
     @BindingAdapter("app:textTV", "app:errorText")

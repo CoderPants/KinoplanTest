@@ -39,7 +39,25 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
+
         <include layout="@layout/launches_nsv_layout"/>
+
+        <kinoplan.testapp.spacexscheduler.ui.customviews.OverlayView
+            android:id="@+id/launches_activity_loading_indicator_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/launches_activity_progressbar_margin_top"
+            android:indeterminateTint="@color/main_white"
+            android:layout_gravity="center" >
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/main_white" />
+
+        </kinoplan.testapp.spacexscheduler.ui.customviews.OverlayView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

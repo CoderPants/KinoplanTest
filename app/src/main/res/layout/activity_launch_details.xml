@@ -201,6 +201,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/activity_launch_details_images_top_text"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
                 />
 
             <!--//////////////////////////////////////////////////////////////////////////////////////////////////-->

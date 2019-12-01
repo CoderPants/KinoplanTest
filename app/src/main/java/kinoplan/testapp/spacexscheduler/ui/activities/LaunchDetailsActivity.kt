@@ -90,7 +90,6 @@ class LaunchDetailsActivity : BaseActivity() {
 
     private fun createRecyclerView() {
         val recyclerView : RecyclerView = binding.activityLaunchDetailsImagesContainer
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapterRV
     }
 

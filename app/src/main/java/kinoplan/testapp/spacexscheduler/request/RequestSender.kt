@@ -3,39 +3,38 @@ package kinoplan.testapp.spacexscheduler.request
 import android.util.Log
 import com.google.gson.JsonArray
 import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
-import retrofit2.Call
-import retrofit2.Callback
+import kotlinx.coroutines.*
 import retrofit2.Response
 
-class RequestSender (private val callBack: RequestCallBack) {
+class RequestSender {
 
-    fun sendGetLaunchesRequest(sortCase : String, orderCase : String){
+    suspend fun sendGetLaunchesRequest(sortCase : String, orderCase : String) : JsonArray{
 
         val service = RetrofitInstance.RETROFIT.create(GetDataService::class.java)
+        var result = JsonArray()
 
-        val getLaunchesCall = service.getAllLaunches(sortCase, orderCase)
+        val deferred : Deferred<Unit> = CoroutineScope(Dispatchers.IO).async{
+            val response : Response<JsonArray> = service.getAllLaunches(sortCase, orderCase)
+            val body : JsonArray? = response.body()
 
-        getLaunchesCall.enqueue(object : Callback<JsonArray> {
+            if(body != null)
+                result = body
+        }
 
-            override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
-                val serverResponse : JsonArray = response.body() ?: JsonArray()
+        checkForException(deferred)
 
-                Log.i(ConstantsForApp.LOG_TAG, "Launches $serverResponse")
-                callBack.onGetLaunchesResponse(serverResponse)
-            }
-
-            override fun onFailure(call: Call<JsonArray>, t: Throwable) {
-                Log.e(ConstantsForApp.LOG_TAG,
-                    "Error by getting data from server. " +
-                            "Call itself ${call.request().body()}. " +
-                            "Error itself: ", t)
-            }
-
-        })
+        return result
     }
 
-
-    interface RequestCallBack {
-        fun onGetLaunchesResponse(receivedLaunches : JsonArray)
+    private suspend fun checkForException(deferred: Deferred<Unit>){
+        try {
+            deferred.await()
+        } catch (ex: Exception) {
+            Log.e(
+                ConstantsForApp.LOG_TAG,
+                "Error by getting data from server. " +
+                        "Error itself: ", ex
+            )
+        }
     }
 }

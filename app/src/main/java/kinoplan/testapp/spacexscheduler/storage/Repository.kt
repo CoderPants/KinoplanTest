@@ -13,27 +13,10 @@ import kotlinx.coroutines.*
 
 class Repository private constructor(application: Application) {
 
-    private val parser : LaunchParser = LaunchParser()
-
     //Really bad!
     var callBack : RepositoryCallBack ? = null
 
-    private val requestSender : RequestSender = RequestSender(object : RequestSender.RequestCallBack
-    {
-        override fun onGetLaunchesResponse(receivedLaunches: JsonArray) {
-            CoroutineScope(Dispatchers.Default).launch {
-                val launches : List<Launch> = parser.parseFromJsonArray(jsonArray = receivedLaunches)
-                val launchesFromDataBase : List<Launch> = getLaunchesAsync()
-
-                if(launches != launchesFromDataBase)
-                    insertLaunchesAsync(launches)
-                else {
-                    Log.i(ConstantsForApp.LOG_TAG, "Data in base is up to date!")
-                    callBack!!.noBooksAddedCondition()
-                }
-            }
-        }
-    })
+    private val requestSender : RequestSender = RequestSender()
 
     private val launchDao : LaunchDao
 
@@ -61,13 +44,33 @@ class Repository private constructor(application: Application) {
 
     fun getLaunchById(id : Int) : LiveData<Launch> = launchDao.getLaunchById(id)
 
-    fun insertLaunchesAsync(launches : List<Launch>) = CoroutineScope(Dispatchers.IO).async { launchDao.insertLaunches(launches) }
+    private fun insertLaunchesAsync(launches : List<Launch>) = CoroutineScope(Dispatchers.IO).launch { launchDao.insertLaunches(launches) }
 
     fun sendRequestToServer(){
-        requestSender.sendGetLaunchesRequest(ConstantsForApp.SORT_CASE, ConstantsForApp.ORDER_CASE)
+        CoroutineScope(Dispatchers.IO).launch {
+            val receivedLaunches = requestSender.sendGetLaunchesRequest(ConstantsForApp.SORT_CASE, ConstantsForApp.ORDER_CASE)
+            insertDataFromServer(receivedLaunches)
+        }
     }
 
-    suspend fun getLaunchesAsync() : List<Launch> = launchDao.getLaunchesAsync()
+    private fun insertDataFromServer(receivedLaunches : JsonArray){
+        CoroutineScope(Dispatchers.Default).launch{
+
+            val launchesFromServer : List<Launch> = DataBaseHelper.parseLaunches(receivedLaunches)
+            val launchesFromDataBase : List<Launch> = getLaunchesAsync()
+
+            val newLaunches : List<Launch> = DataBaseHelper.getNewLaunches(launchesFromDataBase, launchesFromServer)
+
+            if(newLaunches.isNotEmpty())
+                insertLaunchesAsync(launchesFromServer)
+            else {
+                Log.i(ConstantsForApp.LOG_TAG, "Data in base is up to date!")
+                callBack!!.noBooksAddedCondition()
+            }
+        }
+    }
+
+    private suspend fun getLaunchesAsync() : List<Launch> = launchDao.getLaunchesAsync()
 
 
     //Really bad

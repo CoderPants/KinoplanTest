@@ -1,10 +1,8 @@
 package kinoplan.testapp.spacexscheduler.parsers
 
-import android.util.Log
 import com.google.gson.JsonArray
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
 import kinoplan.testapp.spacexscheduler.pojos.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,17 +10,15 @@ import kotlinx.coroutines.withContext
 
 class LaunchParser {
 
-    suspend fun parseFromJsonArray(jsonArray: JsonArray) : List<Launch>{
-
-        val result = ArrayList<Launch>()
-
+    suspend fun parseFromJsonArray(jsonArray: JsonArray) : List<Launch> =
         withContext(CoroutineScope(Dispatchers.Default).coroutineContext) {
+            val result = ArrayList<Launch>()
+
             for (element in jsonArray)
                 result.add(getLaunch(element.asJsonObject))
 
+            result
         }
-        return result
-    }
 
     private fun getLaunch(jsonObject: JsonObject) : Launch {
         //Only this can be JsonNull

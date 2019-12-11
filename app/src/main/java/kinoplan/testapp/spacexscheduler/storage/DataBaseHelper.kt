@@ -28,13 +28,8 @@ object DataBaseHelper {
         return result
     }
 
-    suspend fun parseLaunches(receivedLaunches: JsonArray): List<Launch> {
-        var launches: List<Launch> = emptyList()
-
+    suspend fun parseLaunches(receivedLaunches: JsonArray): List<Launch> =
         withContext(CoroutineScope(Dispatchers.Default).coroutineContext) {
-            launches = parser.parseFromJsonArray(jsonArray = receivedLaunches)
+            parser.parseFromJsonArray(jsonArray = receivedLaunches)
         }
-
-        return launches
-    }
 }

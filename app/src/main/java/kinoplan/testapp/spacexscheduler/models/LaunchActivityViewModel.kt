@@ -10,13 +10,12 @@ import kinoplan.testapp.spacexscheduler.storage.Repository
 class LaunchActivityViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = Repository.getInstance(application)
 
-    //Really bad
-    var callBackFromViewModel : VMCallBack? = null
+    val loadingLiveData = MutableLiveData<Boolean>()
 
     //Really bad
     private val callBackFromRepository : Repository.RepositoryCallBack = object : Repository.RepositoryCallBack {
         override fun noBooksAddedCondition() {
-            callBackFromViewModel!!.noBooksAddedCondition()
+            setLoadingVisibility(false)
         }
     }
 
@@ -35,8 +34,6 @@ class LaunchActivityViewModel(application: Application) : AndroidViewModel(appli
         repository.callBack = callBackFromRepository
     }
 
-    //Really bad
-    interface VMCallBack{
-        fun noBooksAddedCondition()
-    }
+    fun setLoadingVisibility(visible : Boolean) = loadingLiveData.postValue(visible)
+
 }

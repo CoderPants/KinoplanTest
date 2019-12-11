@@ -45,6 +45,22 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/activity_launch_details_ending_margin_bottom">
 
+            <kinoplan.testapp.spacexscheduler.ui.customviews.OverlayView
+                android:id="@+id/launches_details_activity_loading_indicator_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:indeterminateTint="@color/main_white"
+                android:layout_gravity="center" >
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/main_white" />
+
+            </kinoplan.testapp.spacexscheduler.ui.customviews.OverlayView>
+
             <ImageView
                 android:id="@+id/activity_launch_details_go_back_btn"
                 android:layout_width="match_parent"

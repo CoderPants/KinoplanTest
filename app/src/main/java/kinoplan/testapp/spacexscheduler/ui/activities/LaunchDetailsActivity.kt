@@ -1,6 +1,7 @@
 package kinoplan.testapp.spacexscheduler.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -8,9 +9,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kinoplan.testapp.spacexscheduler.R
+import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
 import kinoplan.testapp.spacexscheduler.ui.adapters.ImagesAdapter
 import kinoplan.testapp.spacexscheduler.ui.binding.BindingHandler
 import kinoplan.testapp.spacexscheduler.constants.IntentKeys
@@ -19,6 +20,7 @@ import kinoplan.testapp.spacexscheduler.models.LaunchActivityViewModel
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 import kinoplan.testapp.spacexscheduler.pojos.Links
 import kinoplan.testapp.spacexscheduler.ui.animation.AnimationHelper
+import kinoplan.testapp.spacexscheduler.ui.customviews.OverlayView
 import java.util.ArrayList
 
 class LaunchDetailsActivity : BaseActivity() {
@@ -26,6 +28,7 @@ class LaunchDetailsActivity : BaseActivity() {
     private lateinit var binding : ActivityLaunchDetailsBinding
     private lateinit var adapterRV : ImagesAdapter
     private lateinit var viewModel: LaunchActivityViewModel
+    private lateinit var loadingIndicator : OverlayView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +40,11 @@ class LaunchDetailsActivity : BaseActivity() {
         viewModel = ViewModelProviders.of(this).get(LaunchActivityViewModel::class.java)
 
         createRecyclerView()
-        observeLiveData()
+        observeLaunches()
+
+        loadingIndicator = binding.launchesDetailsActivityLoadingIndicatorContainer
+        observeLoading()
+        viewModel.setLoadingVisibility(true)
 
         createAnimation()
 
@@ -45,11 +52,20 @@ class LaunchDetailsActivity : BaseActivity() {
 
     }
 
+    private fun observeLoading() {
+        viewModel.loadingLiveData.observe(this, Observer<Boolean>{visible ->
+            if(visible)
+                loadingIndicator.visibility = View.VISIBLE
+            else
+                loadingIndicator.visibility = View.GONE
+        })
+    }
+
     private fun setOnBackPressedLogic() =
         binding.activityLaunchDetailsGoBackBtn.setOnClickListener { onBackPressed() }
 
 
-    private fun observeLiveData() {
+    private fun observeLaunches() {
         val launchID : Int = intent.getIntExtra(IntentKeys.FLIGHT_ID, -1)
 
         if(launchID == -1) {
@@ -71,6 +87,8 @@ class LaunchDetailsActivity : BaseActivity() {
             binding.secondStage = launch.rocket.secondStage
             //For click handling
             binding.handler = BindingHandler()
+
+            viewModel.setLoadingVisibility(false)
         })
     }
 

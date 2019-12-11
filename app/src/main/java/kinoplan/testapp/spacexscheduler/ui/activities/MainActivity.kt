@@ -1,13 +1,8 @@
 package kinoplan.testapp.spacexscheduler.ui.activities
 
-import android.content.res.Configuration
 import android.os.Bundle
-import android.os.Parcelable
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -19,9 +14,6 @@ import kinoplan.testapp.spacexscheduler.models.LaunchActivityViewModel
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 import kinoplan.testapp.spacexscheduler.ui.adapters.LaunchesAdapter
 import kinoplan.testapp.spacexscheduler.ui.customviews.OverlayView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class MainActivity : BaseActivity(), LifecycleObserver {
@@ -43,15 +35,15 @@ class MainActivity : BaseActivity(), LifecycleObserver {
 
         viewModel = ViewModelProviders.of(this).get(LaunchActivityViewModel::class.java)
         viewModel.createCallBackFromRepository()
-        //Really bad
-        createCallBack()
 
         recyclerView = findViewById(R.id.launches_activity_rv_launches)
 
         loadingIndicator = findViewById(R.id.launches_activity_loading_indicator_container)
-        loadingIndicator.visibility = View.VISIBLE
 
-        subscribeToViewModel()
+        observeLaunches()
+        observeLoadingIndicator()
+        viewModel.setLoadingVisibility(true)
+
         recyclerViewCreation()
 
         //recyclerViewState = savedInstanceState?.getParcelable(ConstantsForApp.SCROLL_POSITION)
@@ -60,17 +52,13 @@ class MainActivity : BaseActivity(), LifecycleObserver {
 
     }
 
-    //Really bad
-    private fun createCallBack() {
-        val callBackFromViewModel : LaunchActivityViewModel.VMCallBack = object : LaunchActivityViewModel.VMCallBack {
-            override fun noBooksAddedCondition() {
-               CoroutineScope(Dispatchers.Main).launch {
-                   loadingIndicator.visibility = View.GONE
-                   Toast.makeText(this@MainActivity, "There is no new launches!", Toast.LENGTH_SHORT).show()}
-            }
-        }
-
-        viewModel.callBackFromViewModel = callBackFromViewModel
+    private fun observeLoadingIndicator() {
+        viewModel.loadingLiveData.observe(this, Observer<Boolean>{visible ->
+            if(visible)
+                loadingIndicator.visibility = View.VISIBLE
+            else
+                loadingIndicator.visibility = View.GONE
+        })
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -83,7 +71,7 @@ class MainActivity : BaseActivity(), LifecycleObserver {
         Log.i(ConstantsForApp.LOG_TAG, " Vertical ${recyclerView.computeVerticalScrollOffset()}")
     }
 
-    private fun subscribeToViewModel() {
+    private fun observeLaunches() {
         viewModel.getLaunches().observe(this,
             Observer<List<Launch>> { launches ->
 
@@ -91,7 +79,7 @@ class MainActivity : BaseActivity(), LifecycleObserver {
                     viewModel.getDataFromServer()
                 else
                 {
-                    loadingIndicator.visibility = View.GONE
+                    viewModel.setLoadingVisibility(false)
                     adapter.launches = launches
                     //recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
                 }

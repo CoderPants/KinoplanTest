@@ -1,7 +1,6 @@
 package kinoplan.testapp.spacexscheduler.ui.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -11,15 +10,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import kinoplan.testapp.spacexscheduler.R
-import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
 import kinoplan.testapp.spacexscheduler.ui.adapters.ImagesAdapter
-import kinoplan.testapp.spacexscheduler.ui.binding.BindingHandler
 import kinoplan.testapp.spacexscheduler.constants.IntentKeys
 import kinoplan.testapp.spacexscheduler.databinding.ActivityLaunchDetailsBinding
 import kinoplan.testapp.spacexscheduler.models.LaunchActivityViewModel
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 import kinoplan.testapp.spacexscheduler.pojos.Links
 import kinoplan.testapp.spacexscheduler.ui.animation.AnimationHelper
+import kinoplan.testapp.spacexscheduler.ui.binding.BindingLinksHandler
 import kinoplan.testapp.spacexscheduler.ui.customviews.OverlayView
 import java.util.ArrayList
 
@@ -86,7 +84,7 @@ class LaunchDetailsActivity : BaseActivity() {
             binding.firstStage = launch.rocket.firstStage
             binding.secondStage = launch.rocket.secondStage
             //For click handling
-            binding.handler = BindingHandler()
+            binding.handler = BindingLinksHandler()
 
             viewModel.setLoadingVisibility(false)
         })

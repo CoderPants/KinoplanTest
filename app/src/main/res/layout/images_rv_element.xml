@@ -21,7 +21,7 @@
 
         <variable
             name="handler"
-            type="kinoplan.testapp.spacexscheduler.ui.binding.BindingHandler"  />
+            type="kinoplan.testapp.spacexscheduler.ui.binding.BindingActivityHandler"  />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

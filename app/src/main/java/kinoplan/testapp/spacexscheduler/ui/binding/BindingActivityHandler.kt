@@ -10,7 +10,7 @@ import kinoplan.testapp.spacexscheduler.ui.activities.ZoomImageActivity
 import java.lang.StringBuilder
 
 
-class BindingHandler {
+class BindingActivityHandler {
 
     //Two different functions for different intent extras
     //No generics, 'cos we need different intent keys
@@ -34,7 +34,7 @@ class BindingHandler {
         context.startActivity(intent)
     }
 
-    fun openYouTubeLink(context: Context, youtubeID : String ){
+    /*fun openYouTubeLink(context: Context, youtubeID : String ){
         val intentApp = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$youtubeID"))
         val intentBrowser = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$youtubeID"))
 
@@ -48,5 +48,5 @@ class BindingHandler {
     fun openLink(context: Context, url : String ){
         val intentBrowser = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         context.startActivity(intentBrowser)
-    }
+    }*/
 }

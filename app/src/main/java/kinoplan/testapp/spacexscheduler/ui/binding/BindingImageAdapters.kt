@@ -1,17 +1,12 @@
 package kinoplan.testapp.spacexscheduler.ui.binding
 
 import android.graphics.drawable.Drawable
-import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
-
 import androidx.databinding.BindingAdapter
-
 import com.squareup.picasso.Picasso
 import kinoplan.testapp.spacexscheduler.R
-import kinoplan.testapp.spacexscheduler.ui.animation.AnimationHelper
 
-object BindingAdapters {
+object BindingImageAdapters {
 
     @BindingAdapter("app:url", "app:errorImage")
     @JvmStatic
@@ -43,16 +38,6 @@ object BindingAdapters {
                 .into(view)
     }
 
-    @BindingAdapter("app:textTV", "app:errorText")
-    @JvmStatic
-    fun setText(view : TextView, text : String?, errorText: String){
-        if(text == null)
-            view.text = errorText
-        else
-            view.text = text
-
-    }
-
     @BindingAdapter("app:checkImage", "app:crossImage", "app:attribute")
     @JvmStatic
     fun setImage(view : ImageView, checkImage : Drawable, crossImage : Drawable, hasAttribute : Boolean?) =
@@ -60,6 +45,4 @@ object BindingAdapters {
             view.setImageDrawable(crossImage)
         else
             view.setImageDrawable(checkImage)
-
-
 }

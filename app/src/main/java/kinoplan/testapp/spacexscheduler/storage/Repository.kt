@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import com.google.gson.JsonArray
 import kinoplan.testapp.spacexscheduler.constants.ConstantsForApp
 import kinoplan.testapp.spacexscheduler.dao.LaunchDao
-import kinoplan.testapp.spacexscheduler.parsers.LaunchParser
 import kinoplan.testapp.spacexscheduler.pojos.Launch
 import kinoplan.testapp.spacexscheduler.request.RequestSender
 import kotlinx.coroutines.*
@@ -44,8 +43,11 @@ class Repository private constructor(application: Application) {
 
     fun getLaunchById(id : Int) : LiveData<Launch> = launchDao.getLaunchById(id)
 
-    private fun insertLaunchesAsync(launches : List<Launch>) = CoroutineScope(Dispatchers.IO).launch { launchDao.insertLaunches(launches) }
+    private fun insertLaunches(launches : List<Launch>) = CoroutineScope(Dispatchers.IO).launch { launchDao.insertLaunches(launches) }
 
+    private suspend fun getLaunchesAsync() : List<Launch> = launchDao.getLaunchesAsync()
+
+    //Connection to the server logic
     fun sendRequestToServer(){
         CoroutineScope(Dispatchers.IO).launch {
             val receivedLaunches = requestSender.sendGetLaunchesRequest(ConstantsForApp.SORT_CASE, ConstantsForApp.ORDER_CASE)
@@ -62,15 +64,13 @@ class Repository private constructor(application: Application) {
             val newLaunches : List<Launch> = DataBaseHelper.getNewLaunches(launchesFromDataBase, launchesFromServer)
 
             if(newLaunches.isNotEmpty())
-                insertLaunchesAsync(launchesFromServer)
+                insertLaunches(launchesFromServer)
             else {
                 Log.i(ConstantsForApp.LOG_TAG, "Data in base is up to date!")
                 callBack!!.noBooksAddedCondition()
             }
         }
     }
-
-    private suspend fun getLaunchesAsync() : List<Launch> = launchDao.getLaunchesAsync()
 
 
     //Really bad

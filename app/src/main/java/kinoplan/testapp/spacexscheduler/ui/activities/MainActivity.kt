@@ -65,6 +65,7 @@ class MainActivity : BaseActivity(), LifecycleObserver {
         super.onSaveInstanceState(outState)
         //outState.putParcelable(ConstantsForApp.SCROLL_POSITION, recyclerView.layoutManager?.onSaveInstanceState())
         Log.i(ConstantsForApp.LOG_TAG, "Layout ${((recyclerView.layoutManager)as LinearLayoutManager).findFirstVisibleItemPosition()}")
+        Log.i(ConstantsForApp.LOG_TAG, "Layout ${(recyclerView.layoutManager)is LinearLayoutManager}")
         recyclerView.computeHorizontalScrollOffset()
         recyclerView.computeVerticalScrollOffset()
         Log.i(ConstantsForApp.LOG_TAG, " Horizontal ${recyclerView.computeHorizontalScrollOffset()}")
@@ -80,7 +81,7 @@ class MainActivity : BaseActivity(), LifecycleObserver {
                 else
                 {
                     viewModel.setLoadingVisibility(false)
-                    adapter.launches = launches
+                    adapter.setNewData(launches)
                     //recyclerView.layoutManager?.onRestoreInstanceState(recyclerViewState)
                 }
 

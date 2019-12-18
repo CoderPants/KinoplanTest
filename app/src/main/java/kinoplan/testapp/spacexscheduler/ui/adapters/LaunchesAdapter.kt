@@ -3,20 +3,22 @@ package kinoplan.testapp.spacexscheduler.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kinoplan.testapp.spacexscheduler.ui.binding.BindingHandler
+import kinoplan.testapp.spacexscheduler.ui.binding.BindingActivityHandler
 import kinoplan.testapp.spacexscheduler.databinding.LaunchesRvElementBinding
 import kinoplan.testapp.spacexscheduler.pojos.Launch
-import kinoplan.testapp.spacexscheduler.ui.activities.LaunchDetailsActivity
+import kotlin.collections.ArrayList
 
 class LaunchesAdapter : RecyclerView.Adapter<LaunchesAdapter.LaunchesViewHolder>() {
 
-    var launches : List<Launch> = ArrayList()
-        set(value) {
-        field = value
+    private var launches : MutableList<Launch> = ArrayList()
+
+    fun setNewData(new : List<Launch>){
+        launches.clear()
+        launches.addAll(new)
         notifyDataSetChanged()
     }
 
-    val handler : BindingHandler = BindingHandler()
+    val activityHandler : BindingActivityHandler = BindingActivityHandler()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LaunchesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -32,7 +34,7 @@ class LaunchesAdapter : RecyclerView.Adapter<LaunchesAdapter.LaunchesViewHolder>
 
         fun bind(launch : Launch){
             binding.launch = launch
-            binding.handler = handler
+            binding.handler = activityHandler
             binding.executePendingBindings()
         }
     }

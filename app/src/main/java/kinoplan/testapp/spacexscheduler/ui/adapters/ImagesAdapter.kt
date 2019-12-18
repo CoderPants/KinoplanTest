@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kinoplan.testapp.spacexscheduler.databinding.ImagesRvElementBinding
-import kinoplan.testapp.spacexscheduler.ui.binding.BindingHandler
+import kinoplan.testapp.spacexscheduler.ui.binding.BindingActivityHandler
 
 class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImagesViewHolder>() {
 
@@ -14,7 +14,7 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImagesViewHolder>() {
         notifyDataSetChanged()
     }
 
-    val handler : BindingHandler = BindingHandler()
+    val activityHandler : BindingActivityHandler = BindingActivityHandler()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -33,7 +33,7 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImagesViewHolder>() {
             binding.url = image
             binding.images = images
             binding.position = position
-            binding.handler = handler
+            binding.handler = activityHandler
             binding.executePendingBindings()
         }
     }
